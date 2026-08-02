@@ -1,11 +1,9 @@
-if(keyboard_check_pressed(vk_numpad5))
+
+
+
+if (delay_clike > 0)
 {
-	instance_destroy();
-}
-if (carta_selecionada != -1 && !saindo)
-{
-    upgrade_escolha[carta_selecionada].ativa();
-    carta_selecionada = -1;
+    delay_clike--;
 }
 
 if (saindo)
@@ -17,3 +15,10 @@ if (saindo)
         instance_destroy();
     }
 }
+
+
+//if(keyboard_check_pressed(vk_numpad2))
+//{
+	
+//	obj_player.vida_max += 1;
+//}

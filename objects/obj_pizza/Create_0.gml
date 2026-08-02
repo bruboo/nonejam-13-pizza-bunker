@@ -1,3 +1,4 @@
+event_inherited();
 
 velh = 0;
 velv = 0;
@@ -9,7 +10,8 @@ vel = 12;
 velov_save = 0;
 veloh_save = 0;
 
-
+//vendo se ja bateu naquele inimigo nessa reta
+pode_dar_dano = true;
 
 //tempo q a pizza dura
 tempo_pizza = 40;

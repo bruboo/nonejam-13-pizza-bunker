@@ -126,7 +126,7 @@ controla_estado = function()
 			if(timer_wave <= 0)
 			{
 				criar_inimigo();
-				timer_wave = 8;
+				timer_wave = 1;
 			}
 			
 			

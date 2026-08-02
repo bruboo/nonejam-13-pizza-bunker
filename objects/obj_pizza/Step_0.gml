@@ -23,9 +23,6 @@ repeat(passos)
     var mov_x = velh / passos;
     var mov_y = velv / passos;
 
-	//ve se bateu na parede e tal
-    var bateu = false;
-	
 
 
     // Horizontal
@@ -34,8 +31,8 @@ repeat(passos)
 		create_part(1,10,15,x,y,velh,velv);
         velh = -velh;
         mov_x = velh / passos;
-		
-        bateu = true;
+		pode_dar_dano = true;
+    
     }
 
 
@@ -45,8 +42,7 @@ repeat(passos)
 		create_part(1,10,15,x,y,velh,velv);
         velv = -velv;
         mov_y = velv / passos;
-		
-        bateu = true;
+		pode_dar_dano = true;
     }
 
 
@@ -60,33 +56,37 @@ repeat(passos)
 	// colisão com inimigo
 	var inimigo = instance_place(x, y, obj_inimigo);
 
-	if (inimigo != noone)
+	if (inimigo != noone && pode_dar_dano)
 	{
+		
 	    // a pizza tocou no inimigo
+		pode_dar_dano = false;
 	    inimigo.pizza_tocou = true;
 		create_part(0,10,25,x,y,velh,velv);
 	    create_part(4,10,25,x,y,velh,velv);
 	    inimigo.image_xscale = 1.8;
 		inimigo.image_yscale = 1.8;
 		inimigo.vida -= dano_base + obj_player.dano_bonus;
-	    // destrói o inimigo
-	    //instance_destroy(inimigo);
 
-	    // ou destrói a pizza se quiser
-	    instance_destroy();
+
+	    // destrói apenas se ainda não bateu em nenhum forno
+	    if (fornos_batidos <= 0)
+	    {
+	        instance_destroy();
+	    }
 	}
 
 
 
 
    //colisao com o forno
-
     var col = instance_place(x, y, obj_forno);
 
 
     if (col != noone)
     {
 		col.pizza_tocou = true;
+		
 		create_part(3,10,25,x,y,velh,velv);
 		
 		col.image_xscale = 1.5;
@@ -97,6 +97,7 @@ repeat(passos)
 	    if (fornos_batidos >= limite_de_fornos)
 	    {
 	        instance_destroy();
+			exit;
 	    }
 		
 		
@@ -123,26 +124,50 @@ repeat(passos)
                 y += novoy;
             }
 
-
+			//quicada
             var dot = velh * novox + velv * novoy;
 
 
             velh -= 2 * dot * novox;
             velv -= 2 * dot * novoy;
 			
+			pode_dar_dano = true;
 			
 			
 			// pega a força do forno que bateu
 			tempo_pizza += col.timer_boost;
-	        velh += novox * col.poder;
-	        velv += novoy * col.poder;
 			
+			
+			// checa a velocidade atual após o ricochete
+			var check_vel = point_distance(0, 0, velh, velv);
+
+			// procura o inimigo mais próximo 
+	        var alvo = instance_nearest(col.x, col.y, obj_inimigo);
+
+	        if (alvo != noone && point_distance(col.x, col.y, alvo.x, alvo.y) <= 200)
+	        {
+	            // lança na direção do inimigo
+	            var dir_alvo = point_direction(col.x, col.y, alvo.x, alvo.y);
+
+	            velh = lengthdir_x(check_vel + col.poder, dir_alvo);
+	            velv = lengthdir_y(check_vel + col.poder, dir_alvo);
+	        }
+	        else
+	        {
+	            // comportamento normal
+	            velh += novox * col.poder;
+	            velv += novoy * col.poder;
+	        }
+			
+			
+			
+		
 			// limite de velocidade
 			var vel_max = 30;
 
-			var velocidade = point_distance(0,0,velh,velv);
+			var _velocidade = point_distance(0,0,velh,velv);
 
-			if (velocidade > vel_max)
+			if (_velocidade > vel_max)
 			{
 			    var dir = point_direction(0,0,velh,velv);
 

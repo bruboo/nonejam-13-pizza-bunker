@@ -13,12 +13,18 @@ toma_dano = false;
 vida_max = 10
 vida = vida_max;
 
+
+//experiencia do player
 xp = 0;
+lvl = 1;
+
+proximo_lvl = 4;
+lvl_stack = 0;
 
 dano_bonus = 0;
 //delay entre os tiros
-atk_speed = 60;
-timer_tiro = atk_speed;
+atk_speed = 0;
+timer_tiro = 60;
 
 //resistencia da pizza
 res_pizza = 2;

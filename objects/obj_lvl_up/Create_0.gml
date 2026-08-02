@@ -15,8 +15,8 @@ upgrades = [
 			frame:3,
 			ativa: function()
 			{
-				obj_player.vida_max += 2;
-				obj_player.vida += 2;
+			        obj_player.vida_max += 2;
+					obj_player.vida += 2;
 			}
 		},
 /////////
@@ -24,7 +24,7 @@ upgrades = [
 			frame:4,
 			ativa: function()
 			{
-				obj_player.atk_speed -= 5;
+				obj_player.timer_tiro -= 2;
 			}
 		},
 /////////
@@ -81,13 +81,21 @@ repeat(3)
     array_push(upgrade_escolha, upgrades[indice]);
 }
 
-
-hover_x = [];
-for (var i = 0; i < array_length(upgrade_escolha); i++) hover_x[i] = 0;
+//mouse em cima do bgl
+cima_x = [];
+for (var i = 0; i < array_length(upgrade_escolha); i++) cima_x[i] = 0;
 carta_selecionada = -1;
+
+//carta sai pra direita
 saindo = false;
 saida_x = 0;
+//carta entra pra esquerda
 entrada_x = display_get_gui_width();
+
+//pro cara nao clica sem querer
+//usar pra fazer uma identificaçao visual pra conde pode clicar
+delay_clike = 25;
+
 
 
 

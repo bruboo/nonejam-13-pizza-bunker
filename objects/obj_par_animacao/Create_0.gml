@@ -4,6 +4,7 @@ sprite = sprite_index;
 
 //texto debug
 estado_txt = "";
+estado			= noone;
 
 //Sprites que vão ser usadas no objeto
 sprites = [

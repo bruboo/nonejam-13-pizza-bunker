@@ -1,5 +1,10 @@
+event_inherited();
+
+
 pizza_tocou = false;
 //velocidade q empurra a pizza
-poder = 8;
+poder = 6;
 //tempo de vida da pizza adicionado
 timer_boost = 80;
+
+

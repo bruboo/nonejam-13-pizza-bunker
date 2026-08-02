@@ -54,9 +54,4 @@ if(global._key_esc and !instance_exists(obj_menu))
 #endregion
 
 
-if(mouse_check_button_pressed(mb_right) and !instance_exists(obj_lvl_up))
-{
-	var _lvl_up  = instance_create_depth(0, 0, -9999, obj_lvl_up);
-	
-}
 

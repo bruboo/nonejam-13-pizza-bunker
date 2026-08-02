@@ -10,8 +10,8 @@
   "name":"obj_tutorial",
   "overriddenProperties":[],
   "parent":{
-    "name":"Colisores",
-    "path":"folders/Objetos/Colisores.yy",
+    "name":"Controles",
+    "path":"folders/Objetos/Controles.yy",
   },
   "parentObjectId":null,
   "persistent":false,

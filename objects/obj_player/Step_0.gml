@@ -10,6 +10,28 @@ if(instance_exists(obj_lvl_up))
 	vida = vida_max;
 }
 
+
+
+while (xp >= proximo_lvl)
+{
+    lvl++;
+	proximo_lvl += 4 + floor(lvl * 0.8);
+	lvl_stack++;  
+}
+
+if (lvl_stack > 0 && !instance_exists(obj_lvl_up))
+{
+    instance_create_layer(x, y, layer, obj_lvl_up);
+    lvl_stack--;
+}
+
+
+
+
+
+
+
+
 velh = (global._key_right - global._key_left) * move_speed;
 velv = (global._key_down - global._key_up) * move_speed;
 

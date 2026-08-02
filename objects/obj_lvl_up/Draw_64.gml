@@ -28,15 +28,14 @@ for (var i = 0; i < array_length(upgrade_escolha); i++)
 	var alvo = 0;
     if (point_in_rectangle(mx, my, _x - largura*2, yy, _x, yy + altura*2) && !saindo)
     {
-        alvo = -60;
-		if (mouse_check_button_pressed(mb_left))
+        if (delay_clike <= 0 && mouse_check_button_pressed(mb_left))
 	    {
-	        carta_selecionada = i;
-			saindo = true;
+	        carta.ativa();   // Executa aqui
+	        saindo = true;
 	    }
     }
-	hover_x[i] = lerp(hover_x[i], alvo, 0.15);
-    draw_sprite_ext(spr_escolha_botao, carta.frame, _x + hover_x[i] + entrada_x + pos_saida, yy, 2, 2, 0, c_white, 1);
+	cima_x[i] = lerp(cima_x[i], alvo, 0.15);
+    draw_sprite_ext(spr_escolha_botao, carta.frame, _x + cima_x[i] + entrada_x + pos_saida, yy, 2, 2, 0, c_white, 1);
 	//draw_rectangle( _x- largura*2, yy, _x , yy + altura*2,1);
 }
 
