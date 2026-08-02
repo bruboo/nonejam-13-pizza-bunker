@@ -1,0 +1,1 @@
+scpt_transition_start( , local_x, local_y, );

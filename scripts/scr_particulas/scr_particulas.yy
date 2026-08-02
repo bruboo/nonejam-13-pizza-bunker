@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_particulas",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_particulas",
+  "parent":{
+    "name":"scr",
+    "path":"folders/Gamefeel/particulas/scr.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

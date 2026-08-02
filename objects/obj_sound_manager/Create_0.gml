@@ -1,0 +1,7 @@
+//valores globais
+max_distance_to_be_heard = 50;
+start_dropping_off_at    = 60;
+multiplier               = 1;
+
+audio_falloff_set_model(audio_falloff_exponent_distance);
+audio_listener_orientation(0,1,0,  0,0,1);

@@ -1,0 +1,1 @@
+//esse obj serve apenas para o path saber qual obj o inimigo vai contornar 
