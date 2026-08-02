@@ -11,3 +11,4 @@ draw_text_ext_transformed(30, 32, obj_player.xp,5,100,3,3,1);
 
 
 draw_sprite_ext(spr_target,0,device_mouse_x_to_gui(0),device_mouse_y_to_gui(0),1,1,0,c_white,1);
+

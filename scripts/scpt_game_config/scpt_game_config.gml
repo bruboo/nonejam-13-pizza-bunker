@@ -10,8 +10,8 @@ with(global.game_settings)
 	view = 0;
 	view_cam         = noone;
 	//Tamanho da camera do jogo
-	game_width       = 1280;
-	game_height      = 720;
+	game_width       = 768;
+	game_height      = 432;
 
 	// Calcula a escala para manter o aspecto pixel perfect
 	display_scale = min(display_get_width() div game_width, display_get_height() div game_height);
@@ -26,7 +26,7 @@ with(global.game_settings)
 	border_height    = 450;
 	
 	//Qual vai ser o titulo da janela?
-	window_caption   = "Template";
+	window_caption   = "Pizza Moster";
 	//Começar em tela cheia?
 	start_fullscreen = false;
 	//O cursor vai ser visivel?

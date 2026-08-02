@@ -278,7 +278,7 @@ function create_part(_type = 0,_life_min = 0,_life_max,_x = 0, _y = 0,_velh = 0,
 				_part.image_yscale = _size;
 				//esse -90 tem algo a ver com o angulo do ponto de origem da sprite, como se fossem facas e o ponto fica na ponta da lamina 
 				//(importante apenas se a sprite nao tem lados iguais) -90 cima, +90 baixo, esquerda +180, direita ja é o normal
-				_part.image_angle = _ang-90;
+				_part.image_angle = _ang -90;
 				_part._life_max = _life;
 				_part.life = _life;
 				_part.sprite_index = spr_part_thunder;

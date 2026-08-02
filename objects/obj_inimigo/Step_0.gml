@@ -1,11 +1,12 @@
 // Inherit the parent event
 event_inherited();
-
+if(global.parar)
+{
+	velh = 0;
+	velv = 0;
+	return;
+}
 controla_estado();
-
-
-
-
 
 
 
@@ -14,6 +15,7 @@ image_yscale = lerp(image_yscale, 1, 0.15);
 
 if(vida <= 0)
 {
+	instance_create_layer(x,y,layer,obj_experiencia)
 	instance_destroy();
 }
 

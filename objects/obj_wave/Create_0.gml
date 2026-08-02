@@ -78,10 +78,10 @@ controla_estado = function()
 				timer_wave = delay_wave;
 			}
 			
-			if(tempo_jogo >= 30)
-			{
-				estado = "medio";
-			}
+			//if(tempo_jogo >= 30)
+			//{
+			//	estado = "medio";
+			//}
 			
 			
 		}

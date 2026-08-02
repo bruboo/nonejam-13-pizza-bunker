@@ -9,8 +9,8 @@
   "name":"obj_pizza",
   "overriddenProperties":[],
   "parent":{
-    "name":"Pizza",
-    "path":"folders/Objetos/Pizza.yy",
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
   },
   "parentObjectId":null,
   "persistent":false,

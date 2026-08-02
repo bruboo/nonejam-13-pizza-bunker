@@ -3,11 +3,19 @@ velh = 0;
 velv = 0;
 vel = 12;
 
+
+//salvando a velocidade da pizza
+//por causa do pause
+velov_save = 0;
+veloh_save = 0;
+
+
+
 //tempo q a pizza dura
 tempo_pizza = 40;
 
 //porradas q a pizza aguenta
 fornos_batidos = 0;
-limite_de_fornos = 4;
+limite_de_fornos = obj_player.res_pizza;
 
-dano = 1;
+dano_base = 1;

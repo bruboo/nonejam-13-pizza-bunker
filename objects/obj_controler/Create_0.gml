@@ -3,6 +3,9 @@ global.debug							= false;
 parar_forc								= false;
 global.parar							= false;
 
+
+
+
 //Controles
 global.gamepadID				= -50;
 pressed									= 0;

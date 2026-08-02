@@ -1,3 +1,13 @@
+
+	if(global.parar)
+	{
+		//velh = veloh_save; velv = velov_save;
+		veloh_save = velh; velov_save = velv;
+		return;
+	}
+	
+
+
 //calcula cada passo q a pizza anda 
 var passos = ceil(max(abs(velh), abs(velv)));
 
@@ -5,8 +15,6 @@ if (passos < 1)
 {
     passos = 1;
 }
-
-
 
 
 //colisao da pizza
@@ -60,7 +68,7 @@ repeat(passos)
 	    create_part(4,10,25,x,y,velh,velv);
 	    inimigo.image_xscale = 1.8;
 		inimigo.image_yscale = 1.8;
-		inimigo.vida -= dano;
+		inimigo.vida -= dano_base + obj_player.dano_bonus;
 	    // destrói o inimigo
 	    //instance_destroy(inimigo);
 

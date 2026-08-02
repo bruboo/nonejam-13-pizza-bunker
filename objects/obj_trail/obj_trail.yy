@@ -11,7 +11,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Efeitos",
-    "path":"folders/Objetos/Efeitos.yy",
+    "path":"folders/Objetos/Fornos/Efeitos.yy",
   },
   "parentObjectId":null,
   "persistent":false,

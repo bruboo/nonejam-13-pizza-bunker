@@ -37,7 +37,8 @@ if(abs(gamepad_axis_value(global.gamepadID, gp_axislv))  <= dead_zone and abs(ga
 if (instance_exists(global.player))
 {
 	var obj_parar_player =  parar_forc 
-	or instance_exists(obj_menu);
+	or instance_exists(obj_menu)
+	or instance_exists(obj_lvl_up);
 	
 	if (obj_parar_player)
 	{global.parar = true;} else 
@@ -51,3 +52,11 @@ if(global._key_esc and !instance_exists(obj_menu))
 	_menu.Type = 1;
 }
 #endregion
+
+
+if(mouse_check_button_pressed(mb_right) and !instance_exists(obj_lvl_up))
+{
+	var _lvl_up  = instance_create_depth(0, 0, -9999, obj_lvl_up);
+	
+}
+
