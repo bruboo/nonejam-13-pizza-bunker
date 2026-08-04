@@ -18,7 +18,9 @@ repeat(passos)
     // Horizontal
     if (place_meeting(x + mov_x, y, obj_colisor))
     {
+		ultimo_forno = noone;
 		create_part(1,10,15,x,y,velh,velv);
+		lista_inimigos = [];
         velh = -velh;
         mov_x = velh / passos;
 		pode_dar_dano = true;
@@ -29,7 +31,9 @@ repeat(passos)
     // Vertical
     if (place_meeting(x, y + mov_y, obj_colisor))
     {
+		ultimo_forno = noone;
 		create_part(1,10,15,x,y,velh,velv);
+		lista_inimigos = [];
         velv = -velv;
         mov_y = velv / passos;
 		pode_dar_dano = true;

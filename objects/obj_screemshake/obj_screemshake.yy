@@ -9,8 +9,8 @@
   "name":"obj_screemshake",
   "overriddenProperties":[],
   "parent":{
-    "name":"Fornos",
-    "path":"folders/Objetos/Fornos.yy",
+    "name":"Efeitos",
+    "path":"folders/Objetos/Controles/Efeitos.yy",
   },
   "parentObjectId":null,
   "persistent":true,

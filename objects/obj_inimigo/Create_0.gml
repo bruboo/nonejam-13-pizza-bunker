@@ -1,4 +1,4 @@
-// Inherit the parent event
+event_inherited();
 
 //sprite que será desenhada
 sprite = sprite_index;
@@ -55,29 +55,54 @@ ajusta_sprite = function(_indice_array)
 
 vida = 2;
 
-pizza_tocou = false;
-
 
 
 _obj_colision = [obj_colisor,obj_inimigo]
 vel = 2;
 
 
-path = path_add();
+//texto debug
+estado_txt = "";
+estado			= noone;
 
-tempo_path = irandom_range(10,5);
-estado = "seguindo";
 
 
-controla_estado = function()
-{
-	switch(estado)
-	{
+toma_dano = function(_velv = 0,_velh = 0,_dano_base = 0)
+{	
+		create_part(0,10,25,x,y,_velh,_velv);
+	    create_part(4,10,25,x,y,_velh,_velv);
+		image_xscale = 1.8;
+		image_yscale = 1.8;
+		var _dano_bonus = instance_exists(obj_player) ? obj_player.dano_bonus : 0;
+		vida -= _dano_base + _dano_bonus;
 		
-		case "parado":
+		
+		if(vida <= 0)
 		{
-			
-			
+			instance_create_layer(x,y,layer,obj_experiencia)
+			instance_destroy();
+		}
+}
+
+
+
+
+
+estado_parado = function()
+{
+	if (estado_txt != "parado")
+	{		
+		//aqui dentro as coisas acontecem apenas uma vez quando entra no estado
+		image_xscale = 1.5;
+		image_yscale = 1.5;
+		//Mudando a sprite
+		sprites_index = 0;
+		estado_txt = "parado";
+	}
+	//Animando a sprite
+	ajusta_sprite(sprites_index);
+	
+	
 			var _alvo = obj_player;
 			
 			if(!instance_exists(_alvo))estado = "comemora";
@@ -85,51 +110,72 @@ controla_estado = function()
 			var _dist = point_distance(x,y,_alvo.x,_alvo.y);
 
 			if(_dist >= 36)
-			{
-				
-				estado = "seguindo";
+			{				
+				estado = estado_segue;
 			}
-			
-		}
-			break;
-		case "seguindo":
-		{
-			
-			var _alvo = obj_player;
-			
-			
-			
-			if(!instance_exists(_alvo))
-			{
-				
-				estado = "comemora";
-			}
-			
-			dir = point_direction(x,y,_alvo.x,_alvo.y);
-			
-			var _dist = point_distance(x,y,_alvo.x,_alvo.y);
-			
-			
-			velh = lengthdir_x(vel,dir);
-			velv = lengthdir_y(vel,dir);
-			
-			if(_dist <= 36)
-			{
-				
-				estado = "parado";
-			}
-			
-			
-		}
-			break;
-			case "comemora":
-		{
-			
-
-		}
-		break;
-	}
 	
 	
 	
 }
+estado_segue = function()
+{
+	if (estado_txt != "segue")
+	{		
+		//aqui dentro as coisas acontecem apenas uma vez quando entra no estado
+		image_xscale = 1.5;
+		image_yscale = 1.5;
+		//Mudando a sprite
+		sprites_index = 0;
+		estado_txt = "segue";
+	}
+	//Animando a sprite
+	ajusta_sprite(sprites_index);
+	
+			var _alvo = obj_player;
+
+			if(!instance_exists(_alvo))
+			{				
+				estado = estado_comemora;
+			}
+			
+			var _dir = point_direction(x,y,_alvo.x,_alvo.y);
+			
+			var _dist = point_distance(x,y,_alvo.x,_alvo.y);
+			
+			
+			velh = lengthdir_x(vel,_dir);
+			velv = lengthdir_y(vel,_dir);
+			
+			if(_dist <= 36)
+			{			
+				estado = estado_parado;
+			}
+	
+
+}
+
+estado_comemora = function()
+{
+	if (estado_txt != "comemora")
+	{		
+		//aqui dentro as coisas acontecem apenas uma vez quando entra no estado
+		image_xscale = 1.5;
+		image_yscale = 1.5;
+		//Mudando a sprite
+		sprites_index = 0;
+		estado_txt = "comemora";
+	}
+	//Animando a sprite
+	ajusta_sprite(sprites_index);
+
+
+}
+
+estado = estado_parado;
+
+
+
+
+
+
+

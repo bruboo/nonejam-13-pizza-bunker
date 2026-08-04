@@ -35,7 +35,7 @@ for (var i = 0; i < array_length(upgrade_escolha); i++)
 	    }
     }
 	cima_x[i] = lerp(cima_x[i], alvo, 0.15);
-    draw_sprite_ext(spr_escolha_botao, carta.frame, _x + cima_x[i] + entrada_x + pos_saida, yy, 2, 2, 0, c_white, 1);
+    draw_sprite_ext(spr_escolha_botao, carta.frame, _x + cima_x[i] + entrada_x + pos_saida, yy, 1, 1, 0, c_white, 1);
 	//draw_rectangle( _x- largura*2, yy, _x , yy + altura*2,1);
 }
 

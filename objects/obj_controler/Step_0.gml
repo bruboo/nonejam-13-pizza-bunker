@@ -39,6 +39,7 @@ if (instance_exists(global.player))
 	var obj_parar_player =  parar_forc 
 	or instance_exists(obj_menu)
 	or instance_exists(obj_lvl_up);
+
 	
 	if (obj_parar_player)
 	{global.parar = true;} else 
@@ -52,6 +53,60 @@ if(global._key_esc and !instance_exists(obj_menu))
 	_menu.Type = 1;
 }
 #endregion
+
+
+for (var i = 0; i < array_length(global.fornos); i++)
+{
+    global.fornos[i].frame += 0.1;
+
+    if (global.fornos[i].frame >= sprite_get_number(spr_forno_spot_alerta))
+    {
+        global.fornos[i].frame = 0;
+    }
+}
+
+//efeito de toing no dinheiro
+if (instance_exists(obj_player))
+{
+    if (obj_player.cash != cash_antigo)
+    {
+        cash_scale = 1.2;
+		cash_numero_scale = 1.6;
+        cash_antigo = obj_player.cash;
+    }
+}
+
+cash_scale = lerp(cash_scale, 1, 0.2);
+cash_numero_scale = lerp(cash_numero_scale, 1, 0.2);
+
+var _hud_y = 0;
+var _cash_x = 0;
+
+if (instance_exists(obj_upgrades_loja) || instance_exists(obj_lvl_up))
+{
+    _hud_y = -150;
+}
+
+if (instance_exists(obj_lvl_up))
+{
+    _cash_x = -150;
+}
+
+hud_y_offset = lerp(hud_y_offset, _hud_y, 0.5);
+hud_cash_x_offset = lerp(hud_cash_x_offset, _cash_x, 0.5);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -11,7 +11,8 @@ global.gamepadID				= -50;
 pressed									= 0;
 dead_zone								= .25;
 
-
+//o player nao ataca
+global.bloquear_ataque = false;
 
 
 
@@ -199,3 +200,64 @@ gamepad_check_any_button = function()
 	
 	return false;
 }
+
+
+global.fornos = [];
+
+//salva o dinheiro q tinha antes
+cash_antigo = 0;
+cash_scale = 1;
+cash_numero_scale = 1;
+hud_y_offset = 0;
+hud_cash_x_offset = 0;
+
+//transformando numeral em sprites
+draw_numero_sprite = function(_sprite, _valor, _x, _y, _espaco, _escala)
+{
+    var _texto = string(clamp(_valor, 0, 9999));
+
+    while (string_length(_texto) < 4)
+    {
+        _texto = "0" + _texto;
+    }
+
+    var _offset = [0, -3, -5, -7];
+
+    for (var i = 1; i <= 4; i++)
+    {
+        var _numero = real(string_char_at(_texto, i));
+
+        var _xx = _x + (i - 1) * _espaco * _escala;
+        var _yy = _y + _offset[i - 1];
+
+        draw_sprite_ext(_sprite, _numero, _xx, _yy, _escala, _escala, 0, c_white, 1);
+    }
+}
+
+//numero alinhado
+draw_numero_alinhado = function(_sprite, _valor, _x, _y, _espaco, _cor, _align)
+{
+    var _texto = string(_valor);
+    var _largura = string_length(_texto) * _espaco;
+
+    var _inicio_x = _x;
+
+    if (_align == "center")
+    {
+        _inicio_x = _x - _largura * 0.5;
+    }
+    else if (_align == "right")
+    {
+        _inicio_x = _x - _largura;
+    }
+
+    for (var i = 1; i <= string_length(_texto); i++)
+    {
+        var _numero = real(string_char_at(_texto, i));
+
+        draw_sprite_ext(_sprite, _numero, _inicio_x + (i - 1) * _espaco, _y, 1, 1, 0, _cor, 1);
+    }
+}
+
+
+
