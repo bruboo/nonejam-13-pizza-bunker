@@ -96,6 +96,14 @@ hud_y_offset = lerp(hud_y_offset, _hud_y, 0.5);
 hud_cash_x_offset = lerp(hud_cash_x_offset, _cash_x, 0.5);
 
 
+if (instance_exists(obj_player))
+{
+    var _xp_porcentagem = clamp(obj_player.xp / obj_player.proximo_lvl, 0, 1);
+	var _vida_porcentagem = clamp(obj_player.vida / obj_player.vida_max, 0, 1);
+
+    vida_barra = lerp(vida_barra, _vida_porcentagem, 0.1);
+    xp_barra = lerp(xp_barra, _xp_porcentagem, 0.1);
+}
 
 
 

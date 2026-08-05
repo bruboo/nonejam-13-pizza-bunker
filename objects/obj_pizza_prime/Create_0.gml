@@ -29,7 +29,11 @@ limite_de_fornos = obj_player.res_pizza;
 //salva o ultimo forno q a pizza bateu
 ultimo_forno = noone;
 
-dano_base = 1;
+//dano base da pizza
+dano_base = obj_player.dano_bonus;
+
+//dano q vem do forno
+forno_mod_dano = 0;
 
 //pega os inmigos q acerta
 lista_inimigos = []
@@ -63,7 +67,7 @@ estado_crua = function()
 	ajusta_sprite(sprites_index);
 	
 	destroi_pizza();
-	var _inimigo = instance_place(x, y, obj_inimigo);
+	var _inimigo = instance_place(x, y, obj_entidade_inimigo);
 
 	if (_inimigo != noone)
 	{
@@ -89,7 +93,7 @@ estado_pronta = function()
 {
 	if (estado_txt != "pronta")
 	{
-		
+		dano_base = dano_base * forno_mod_dano; 
 		image_blend = c_black;
 		//aqui dentro as coisas acontecem apenas uma vez quando entra no estado
 		image_xscale = 1.5;
@@ -102,7 +106,7 @@ estado_pronta = function()
 	ajusta_sprite(sprites_index);
 	destroi_pizza();
 	
-	var _inimigo = instance_place(x, y, obj_inimigo);
+	var _inimigo = instance_place(x, y, obj_entidade_inimigo);
 
 	if (_inimigo != noone )
 	{

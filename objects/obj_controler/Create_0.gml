@@ -210,6 +210,8 @@ cash_scale = 1;
 cash_numero_scale = 1;
 hud_y_offset = 0;
 hud_cash_x_offset = 0;
+xp_barra = 0;
+vida_barra = 0;
 
 //transformando numeral em sprites
 draw_numero_sprite = function(_sprite, _valor, _x, _y, _espaco, _escala)

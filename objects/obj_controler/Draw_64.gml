@@ -79,7 +79,7 @@ draw_sprite_ext(spr_hud_xp,0,1024,hud_y_offset,1,1,0,c_white,1);
 
 if (instance_exists(obj_player))
 {
-    var _porcentagem = clamp(obj_player.xp / obj_player.proximo_lvl, 0, 1);
+    var _porcentagem = xp_barra;
 
     var _larg = sprite_get_width(spr_hud_xp_progresso);
     var _alt = sprite_get_height(spr_hud_xp_progresso);
@@ -92,7 +92,7 @@ if (instance_exists(obj_player))
 draw_sprite_ext(spr_hud_lifebar,0,0,hud_y_offset,1,1,0,c_white,1);
 if (instance_exists(obj_player))
 {
-    var _porcentagem = clamp(obj_player.vida / obj_player.vida_max, 0, 1);
+    var _porcentagem = vida_barra;
 
     var _larg = sprite_get_width(spr_hud_lifebar_vitals);
     var _alt = sprite_get_height(spr_hud_lifebar_vitals);
@@ -119,8 +119,8 @@ if(instance_exists(obj_player)) draw_numero_sprite(spr_numeral_cash, obj_player.
 
 
 
-
-
+//desenhando o mouse
+draw_sprite_ext(spr_target,0,device_mouse_x_to_gui(0),device_mouse_y_to_gui(0),1,1,0,c_white,1);
 
 
 

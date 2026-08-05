@@ -1,0 +1,1 @@
+draw_numero_alinhado(spr_numeral_cash, valor, x, y, 12, c_white, "center");

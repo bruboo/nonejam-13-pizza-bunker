@@ -1,140 +1,239 @@
-delay_wave = 150;
-timer_wave = delay_wave;
+tempo_ms = 0;
+timer_y = 30;
 
-// Área onde os inimigos podem nascer
-area_x = 90;
-area_y = 100;
+wave = 1;
+timer_spawn = 0;
 
-area_largura = 1250;
-area_altura = 800;
+// referências dos objetos
+inimigo_normal = obj_inimigo;
+inimigo_1 = obj_inimigo_1;
+inimigo_2 = obj_inimigo_2;
 
-tempo_jogo = 0;
+// waves
+waves = [
+	{
+		tempo: 0,
+		inimigos: [
+			{obj: inimigo_normal, chance: 100}
+		],
+		limite: 30,
+		intervalo: 1
+	},
 
-estado = "facil";
+	{
+		// é 60 na vdd
+		tempo: 80,
+		inimigos: [
+			{obj: inimigo_normal, chance: 70},
+			{obj: inimigo_1, chance: 30}
+		],
+		limite: 60,
+		intervalo: 0.6
+	},
 
-
-spawn_x = [
-    1398, // direita
-    96, // esquerda
-    754,  // cima
-    754   // baixo
+	{
+		tempo: 120,
+		inimigos: [
+			{obj: inimigo_normal, chance: 50},
+			{obj: inimigo_1, chance: 35},
+			{obj: inimigo_2, chance: 15}
+		],
+		limite: 100,
+		intervalo: 0.3
+	}
 ];
 
-
-spawn_y = [
-    490,  // direita
-    490,  // esquerda
-    96, // cima
-    864   // baixo
-];
-
-// último spawn usado
-ultimo_spawn = -1;
-
-criar_inimigo = function()
+escolhe_inimigo = function(_lista)
 {
-    var pos = irandom(3);
-	
-	// evita nascer no mesmo lugar duas vezes seguidas
-    while(pos == ultimo_spawn)
-    {
-        pos = irandom(3);
-    }
+	var _total = 0;
 
-    ultimo_spawn = pos;
+	for(var i = 0; i < array_length(_lista); i++)
+	{
+		_total += _lista[i].chance;
+	}
 
+	var _valor = random(_total);
+	var _soma = 0;
 
-    instance_create_layer(
-        spawn_x[pos],
-        spawn_y[pos],
-        layer,
-        obj_inimigo
-    );
-    
-   
+	for(var i = 0; i < array_length(_lista); i++)
+	{
+		_soma += _lista[i].chance;
+
+		if(_valor <= _soma)
+		{
+			return _lista[i].obj;
+		}
+	}
+
+	return _lista[0].obj;
 }
 
 
-
-
-
-
-
-
-
-
-
-controla_estado = function()
+draw_numero_alinhado = function(_sprite, _valor, _x, _y, _espaco, _cor, _align)
 {
-	switch(estado)
+    var _texto = string(_valor);
+    var _largura = string_length(_texto) * _espaco;
+
+    var _inicio_x = _x;
+
+    if (_align == "center")
+        _inicio_x = _x - _largura * 0.5;
+    else if (_align == "right")
+        _inicio_x = _x - _largura;
+
+    for (var i = 1; i <= string_length(_texto); i++)
+    {
+        var _char = string_char_at(_texto, i);
+        var _frame;
+
+        if (_char == ":")
+            _frame = 10;
+        else
+            _frame = real(_char);
+
+        draw_sprite_ext(_sprite, _frame, _inicio_x + (i - 1) * _espaco, _y, 1, 1, 0, _cor, 1);
+    }
+}
+
+// criar inimigo
+spawn_inimigo = function(_obj)
+{
+	var _quantidade_spawn = instance_number(obj_spawn);
+
+	if(_quantidade_spawn <= 0)
+		return;
+
+
+	var _spawn = instance_find(obj_spawn, irandom(_quantidade_spawn - 1));
+
+
+	var _x_spawn = random_range(_spawn.x - _spawn.largura_area * 0.5, _spawn.x + _spawn.largura_area * 0.5);
+	var _y_spawn = random_range(_spawn.y - _spawn.altura_area * 0.5, _spawn.y + _spawn.altura_area * 0.5);
+
+
+	instance_create_layer(_x_spawn,_y_spawn,"Instances",_obj);
+};
+
+//upgrades da loja aqui
+upgrades = [
+
+/////////
+		{
+			frame:1,
+			preco:67,
+			ativa: function()
+			{
+				
+			}
+		},
+/////////
+		{
+			frame:3,
+			preco:56630,
+			ativa: function()
+			{
+			       
+			}
+		},
+/////////
+		{
+			frame:0,
+			preco:100,
+			ativa: function()
+			{
+				array_push(global.fornos,
+				{
+				    frame: 0,
+				    ocupado: false
+				});
+			}
+		},
+/////////
+		{
+			frame:2,
+			preco:150,
+			ativa: function()
+			{
+				
+			}
+		}
+
+
+
+
+]
+//salva as 3 cartas
+global.upgrades_loja = [];
+
+gera_upgrades_loja = function()
+{
+	global.upgrades_loja = [];
+
+	var usados = [];
+
+	repeat(3)
 	{
-		
-		case "facil":
+		var indice;
+		var repetido;
+
+		do
 		{
-			timer_wave--;
-			if(timer_wave <= 0)
-			{
-				criar_inimigo();
-				timer_wave = delay_wave;
-			}
-			
-			//if(tempo_jogo >= 30)
-			//{
-			//	estado = "medio";
-			//}
-			
-			
-		}
-			break;
-			
-		 case "medio":
-		 {
-			 timer_wave--;
-			if(timer_wave <= 0)
-			{
-				criar_inimigo();
-				timer_wave = 75;
-			}
-			
-			if(tempo_jogo >= 60)
-			{
-				estado = "dificil";
-			}
-		 }
-		 break;
-		 
-		  case "dificil":
-		 {
-			  timer_wave--;
-			if(timer_wave <= 0)
-			{
-				criar_inimigo();
-				timer_wave = 30;
-			}
-			if(tempo_jogo >= 90)
-			{
-				estado = "impossivel";
-			}
-			
-			
-		 }
-		 break;
-		 
-		 case "impossivel":
-		{
-			timer_wave--;
-			if(timer_wave <= 0)
-			{
-				criar_inimigo();
-				timer_wave = 1;
-			}
-			
-			
-			
-			
-		}
-			break;
-			
+			indice = irandom(array_length(upgrades) - 1);
+
+			repetido = array_contains(usados, indice);
+
+		} until(!repetido);
+
+		array_push(usados, indice);
+		array_push(global.upgrades_loja, upgrades[indice]);
 	}
-	
+}
+//aqui determina o tempo q vai ser chamado a porra
+eventos = [
+	{
+		tempo: 30,
+		acao: "loja",
+		feito: false
+	},
+	{
+		tempo: 60,
+		acao: "loja",
+		feito: false
+	},
+	{
+		tempo: 90,
+		acao: "loja",
+		feito: false
+	},
+	{
+		tempo: 120,
+		acao: "loja",
+		feito: false
+	},
+
+	{
+		tempo: 600,
+		acao: "boss",
+		feito: false
+	}
+];
+
+//saber se a porra da wave ta parada
+wave_parada = false;
+
+//para a porra da wave
+parar_wave = function()
+{
+	wave_parada = true;
+
+	with(obj_entidade_inimigo)
+	{
+		instance_destroy();
+	}
+};
+
+//volta a wave
+voltar_wave = function()
+{
+	wave_parada = false;
 }

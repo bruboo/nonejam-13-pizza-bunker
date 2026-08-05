@@ -22,7 +22,8 @@ entrada_y = lerp(entrada_y, 0, 0.3);
 
 for (var i = 0; i < array_length(upgrade_escolha); i++)
 {
-    var carta = upgrade_escolha[i];
+    var carta = upgrade_escolha[i];	
+	var _comprar = obj_player.cash >= carta.preco;
 
     var _x = _inicio_x + i * (_largura + espaco);
     var alvo = 0;
@@ -50,8 +51,12 @@ for (var i = 0; i < array_length(upgrade_escolha); i++)
     var _draw_x = _x + (_largura * (1 - click_scale[i])) * 0.5;
     var _draw_y = _y + cima_x[i] + entrada_y + saida_y + (_altura * (1 - click_scale[i])) * 0.5;
 
-   draw_sprite_ext(spr_roleta_upgrades_loja, carta.frame, _draw_x, _draw_y, _escala, _escala, 0, c_white, 1);
-   draw_numero_alinhado(spr_numeral_cash, carta.preco, _draw_x + (_largura * click_scale[i]) * 0.5, _draw_y + (_altura * click_scale[i]) + 10, 14, c_white, "center");
+    draw_sprite_ext(spr_roleta_upgrades_loja, carta.frame, _draw_x, _draw_y, _escala, _escala, 0, c_white, 1);
+    if(!_comprar)
+	{
+		draw_sprite_ext(spr_loja_sinaliza, 0, _draw_x, _draw_y, _escala, _escala, 0, c_white, 1);
+	}
+    draw_numero_alinhado(spr_numeral_cash_loja, carta.preco, _draw_x + (_largura * click_scale[i]) * 0.5, _draw_y + (_altura * click_scale[i]) + 10, 14, _comprar ? c_white : $191919, "center", 1);
     
 }
 

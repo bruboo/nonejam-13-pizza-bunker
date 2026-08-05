@@ -1,84 +1,8 @@
 
 
-upgrades = [
 
-/////////
-		{
-			frame:1,
-			preco:67,
-			ativa: function()
-			{
-				
-			}
-		},
-/////////
-		{
-			frame:3,
-			preco:56630,
-			ativa: function()
-			{
-			       
-			}
-		},
-/////////
-		{
-			frame:0,
-			preco:100,
-			ativa: function()
-			{
-				array_push(global.fornos,
-				{
-				    frame: 0,
-				    ocupado: false
-				});
-			}
-		},
-/////////
-		{
-			frame:2,
-			preco:150,
-			ativa: function()
-			{
-				
-			}
-		}
+upgrade_escolha = global.upgrades_loja;
 
-
-
-
-]
-
-
-
-upgrade_escolha = [];
-
-var usados = [];
-
-repeat(3)
-{
-    var indice;
-    var repetido;
-
-    do
-    {
-        indice = irandom(array_length(upgrades) - 1);
-
-        repetido = false;
-
-        for (var i = 0; i < array_length(usados); i++)
-        {
-            if (usados[i] == indice)
-            {
-                repetido = true;
-                break;
-            }
-        }
-
-    } until (!repetido);
-
-    array_push(usados, indice);
-    array_push(upgrade_escolha, upgrades[indice]);
-}
 
 //mouse em cima do bgl
 cima_x = [];
@@ -106,10 +30,10 @@ for (var i = 0; i < array_length(upgrade_escolha); i++)
 
 
 
-draw_numero_alinhado = function(_sprite, _valor, _x, _y, _espaco, _cor, _align)
+draw_numero_alinhado = function(_sprite, _valor, _x, _y, _espaco, _cor, _align, _escala)
 {
     var _texto = string(_valor);
-    var _largura = string_length(_texto) * _espaco;
+    var _largura = string_length(_texto) * _espaco * _escala;
 
     var _inicio_x = _x;
 
@@ -126,7 +50,7 @@ draw_numero_alinhado = function(_sprite, _valor, _x, _y, _espaco, _cor, _align)
     {
         var _numero = real(string_char_at(_texto, i));
 
-        draw_sprite_ext(_sprite, _numero, _inicio_x + (i - 1) * _espaco, _y, 1, 1, 0, _cor, 1);
+        draw_sprite_ext(_sprite, _numero, _inicio_x + (i - 1) * _espaco * _escala, _y, _escala, _escala, 0, _cor, 1);
     }
 }
 

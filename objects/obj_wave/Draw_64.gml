@@ -1,14 +1,23 @@
-var minutos = floor(tempo_jogo / 60);
-var segundos = floor(tempo_jogo mod 60);
+var _tempo = floor(tempo_ms);
 
-var texto = string_format(minutos, 2, 0) + ":" + string_format(segundos, 2, 0);
+var _min = _tempo div 60;
+var _seg = _tempo mod 60;
 
-draw_text_ext_transformed(550, 32, texto,5,100,3,3,1);
+var _min_txt = string(_min);
+if (string_length(_min_txt) < 2) _min_txt = "0" + _min_txt;
 
-draw_text_ext_transformed(650, 650, obj_player.vida,5,100,3,3,1);
-draw_text_ext_transformed(530, 650, "vida",5,100,3,3,1);
-draw_text_ext_transformed(30, 32, obj_player.xp,5,100,3,3,1);
+var _seg_txt = string(_seg);
+if (string_length(_seg_txt) < 2) _seg_txt = "0" + _seg_txt;
 
+var _texto = _min_txt + ":" + _seg_txt;
 
-draw_sprite_ext(spr_target,0,device_mouse_x_to_gui(0),device_mouse_y_to_gui(0),1,1,0,c_white,1);
+var _destino_y = 30;
 
+if (instance_exists(obj_upgrades_loja) || instance_exists(obj_lvl_up))
+{
+    _destino_y = -40;
+}
+
+timer_y = lerp(timer_y, _destino_y, 0.2);
+
+draw_numero_alinhado(spr_numeros_timer, _texto, display_get_gui_width() * 0.5, timer_y, 16, c_white, "center");

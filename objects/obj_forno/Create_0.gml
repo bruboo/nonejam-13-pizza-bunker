@@ -7,6 +7,8 @@ sprites = [
 
 
 //pizza_tocou = false;
+//multiplicador de dano do forno
+dano = 4;
 //velocidade q empurra a pizza
 poder = 6;
 //tempo de vida da pizza adicionado
@@ -35,6 +37,7 @@ estado_base = function()
 			create_part(3,10,25,x,y,_pizza.velh,_pizza.velv);
 			image_xscale = 1.5;
 			image_yscale = 1.5;
+			_pizza.forno_mod_dano = dano;
 			_pizza.tempo_pizza += timer_boost;
 			_pizza.fornos_batidos++;
 			_pizza.lista_inimigos = [];
@@ -56,7 +59,7 @@ estado_base = function()
 			var check_vel = point_distance(0, 0, _pizza.velh, _pizza.velv);
 
 			// procura o inimigo mais próximo 
-	        var alvo = instance_nearest(x, y, obj_inimigo);
+	        var alvo = instance_nearest(x, y, obj_entidade_inimigo);
 
 	        if (alvo != noone && point_distance(x, y, alvo.x, alvo.y) <= 250)
 	        {

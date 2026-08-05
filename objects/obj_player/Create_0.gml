@@ -35,7 +35,7 @@ cash = 200;
 proximo_lvl = 4;
 lvl_stack = 0;
 
-dano_bonus = 0;
+dano_bonus = 1;
 //delay entre os tiros
 atk_speed = 0;
 timer_tiro = 70;

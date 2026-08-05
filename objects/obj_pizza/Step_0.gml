@@ -54,7 +54,7 @@ repeat(passos)
 	
 	
 	// colisão com inimigo
-	var inimigo = instance_place(x, y, obj_inimigo);
+	var inimigo = instance_place(x, y, obj_entidade_inimigo);
 
 	if (inimigo != noone && pode_dar_dano)
 	{
@@ -142,7 +142,7 @@ repeat(passos)
 			var check_vel = point_distance(0, 0, velh, velv);
 
 			// procura o inimigo mais próximo 
-	        var alvo = instance_nearest(col.x, col.y, obj_inimigo);
+	        var alvo = instance_nearest(col.x, col.y, obj_entidade_inimigo);
 
 	        if (alvo != noone && point_distance(col.x, col.y, alvo.x, alvo.y) <= 200)
 	        {
