@@ -32,10 +32,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_controler",
-    "path":"sprites/spr_controler/spr_controler.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

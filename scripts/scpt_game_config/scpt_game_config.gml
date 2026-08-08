@@ -10,14 +10,19 @@ with(global.game_settings)
 	view = 0;
 	view_cam         = noone;
 	//Tamanho da camera do jogo
-	game_width       = 1024;
-	game_height      = 576;
+	game_width       = 960;
+	game_height      = 540;
 
 	// Calcula a escala para manter o aspecto pixel perfect
-	display_scale = min(display_get_width() div game_width, display_get_height() div game_height);
+	display_scale = max(1, min(display_get_width() div game_width, display_get_height() div game_height));
+	
 	//Tamanho da gui
-	gui_width        = game_width  * display_scale;
-	gui_height       = game_height * display_scale;
+	//gui_width        = game_width  * display_scale;
+	//gui_height       = game_height * display_scale;
+	
+	
+	gui_width  = 1024;
+	gui_height = 576;
 	//Tamanho da janela
 	window_width     = game_width  * display_scale;
 	window_height    = game_height * display_scale;
@@ -26,11 +31,11 @@ with(global.game_settings)
 	border_height    = 1450;
 	
 	//Qual vai ser o titulo da janela?
-	window_caption   = "Pizza Moster";
+	window_caption   = "Pizza Bunker";
 	//Começar em tela cheia?
 	start_fullscreen = false;
 	//O cursor vai ser visivel?
-	cursor_visible   = false;
+	cursor_visible   = true;
 	//Qual sala eu devo ir depois da sala_init?
 	room_start       = rm_menu;
 }
@@ -83,7 +88,10 @@ function game_set_window()
 	//setando o tamanho da surface
 	surface_resize(application_surface, global.game_settings.game_width, global.game_settings.game_height);
 	
+	
 	//setando o tamanho da GUI
+	//display_set_gui_size(global.game_settings.gui_width, global.game_settings.gui_height);
+	//display_set_gui_size(global.game_settings.game_width, global.game_settings.game_height);
 	display_set_gui_size(global.game_settings.gui_width, global.game_settings.gui_height);
 	
 	//setando a janela no meio do monitor

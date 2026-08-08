@@ -9,10 +9,54 @@ sprites = [
 //pizza_tocou = false;
 //multiplicador de dano do forno
 dano = 4;
+//dano do forno
+dano_base = 10;
 //velocidade q empurra a pizza
 poder = 6;
 //tempo de vida da pizza adicionado
 timer_boost = 80;
+
+
+
+//upgrades
+forno_xplode = function()
+{
+	if (!global.forno_xplode_ativo) return;
+	var _rastro = instance_create_layer(x,y-14,"Instances",obj_forno_explode);
+	_rastro.image_alpha = 0;
+	create_part(8,40,60,x,y-14,0,0);	
+}
+forno_sniper = function(_pizza, check_vel, alvo, dir)
+{
+		// procura o inimigo mais próximo 
+			if (alvo != noone && point_distance(x, y, alvo.x, alvo.y) <= 5000)
+	        {
+	            // lança na direção do inimigo
+	            var dir_alvo = point_direction(x, y, alvo.x, alvo.y);
+
+	           _pizza.velh = lengthdir_x(check_vel + poder, dir_alvo);
+	           _pizza.velv = lengthdir_y(check_vel + poder, dir_alvo);
+	        }
+	        else
+	        {
+			    // força do forno
+			    _pizza.velh += lengthdir_x(poder, dir);
+			    _pizza.velv += lengthdir_y(poder, dir);
+			}
+}
+forno_pizza_extra = function(_pizza)
+{
+	if (!global.pizza_extra_ativa) return;
+	var _nova_pizza = instance_create_layer(x,y-14,"Instances",obj_pizza_extra);
+
+	_nova_pizza.dano_base = _pizza.dano_base;
+	_nova_pizza.forno_mod_dano = 1;
+
+	var _dir = random(360);
+
+	_nova_pizza.velh = lengthdir_x(_nova_pizza.vel,_dir);
+	_nova_pizza.velv = lengthdir_y(_nova_pizza.vel,_dir);
+};
 
 estado_base = function()
 {
@@ -28,15 +72,16 @@ estado_base = function()
 	image_xscale = lerp(image_xscale, 1, 0.15);
 	image_yscale = lerp(image_yscale, 1, 0.15);
 	
-	var _pizza = instance_place(x, y, obj_pizza_prime);
+	var _pizza = instance_place(x, y, obj_pizza_mae);
 
 	if (_pizza != noone)
 	{
 		if(_pizza.ultimo_forno != id)
 		{
-			create_part(3,10,25,x,y,_pizza.velh,_pizza.velv);
+			create_part(0,30,60,x,y-14,0,0);
 			image_xscale = 1.5;
 			image_yscale = 1.5;
+			forno_xplode();
 			_pizza.forno_mod_dano = dano;
 			_pizza.tempo_pizza += timer_boost;
 			_pizza.fornos_batidos++;
@@ -60,20 +105,32 @@ estado_base = function()
 
 			// procura o inimigo mais próximo 
 	        var alvo = instance_nearest(x, y, obj_entidade_inimigo);
+			
+			if (_pizza.pode_gerar_extra && global.pizza_extra_ativa)
+			{
+				forno_pizza_extra(_pizza);
+			}
+			
+		
 
-	        if (alvo != noone && point_distance(x, y, alvo.x, alvo.y) <= 250)
-	        {
-	            // lança na direção do inimigo
-	            var dir_alvo = point_direction(x, y, alvo.x, alvo.y);
+	        if (global.forno_sniper_ativo)
+			{
+				forno_sniper(_pizza, check_vel, alvo, dir);
+			}
+			else
+			{
+				if (alvo != noone && point_distance(x, y, alvo.x, alvo.y) <= 250)
+				{
+					var _dir_alvo = point_direction(x, y, alvo.x, alvo.y);
 
-	           _pizza.velh = lengthdir_x(check_vel + poder, dir_alvo);
-	           _pizza.velv = lengthdir_y(check_vel + poder, dir_alvo);
-	        }
-	        else
-	        {
-			    // força do forno
-			    _pizza.velh += lengthdir_x(poder, dir);
-			    _pizza.velv += lengthdir_y(poder, dir);
+					_pizza.velh = lengthdir_x(check_vel + poder, _dir_alvo);
+					_pizza.velv = lengthdir_y(check_vel + poder, _dir_alvo);
+				}
+				else
+				{
+					_pizza.velh += lengthdir_x(poder, dir);
+					_pizza.velv += lengthdir_y(poder, dir);
+				}
 			}
 		}
 	}

@@ -18,7 +18,8 @@ if(global._key_interate)
 						instance_destroy();
 					}else
 					{
-						room_goto(rm_01);
+						//scpt_transition_start(rm_tutorial,0,0,seq_FadeOut,seq_FadeIn);
+						room_goto(rm_01);						
 					}
 				break;
 				

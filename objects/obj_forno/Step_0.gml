@@ -1,5 +1,5 @@
 
-
+depth = -y;
 
 //if (pizza_tocou)
 //{

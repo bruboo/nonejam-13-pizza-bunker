@@ -3,6 +3,21 @@ global.debug							= false;
 parar_forc								= false;
 global.parar							= false;
 
+//gpu_set_texfilter(false);
+
+
+
+gui_surface = -1;
+
+
+//upgrade do forno
+global.forno_xplode_ativo = false;
+global.forno_sniper_ativo = false;
+global.pizza_extra_ativa = false;
+
+
+
+
 
 
 

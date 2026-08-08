@@ -1,3 +1,24 @@
+
+
+if (!surface_exists(gui_surface))
+{
+    gui_surface = surface_create(1024, 576);
+}
+
+surface_set_target(gui_surface);
+draw_clear_alpha(c_black, 0);
+
+// TODO: todo seu código atual de Draw GUI entra aqui
+
+surface_reset_target();
+
+
+if(room != rm_01)
+{
+    exit;
+}
+
+
 var espaco = -100;
 
 var _largura = sprite_get_width(spr_forno_spot_alerta);

@@ -55,7 +55,7 @@ ajusta_sprite = function(_indice_array)
 
 
 vida = 2;
-
+dano = 1;
 
 
 _obj_colision = [];
@@ -84,9 +84,16 @@ toma_dano = function(_velv = 0,_velh = 0,_dano_base = 0)
 		
 		if(vida <= 0)
 		{
-			instance_create_layer(x,y,layer,obj_experiencia);
-			instance_create_layer(x,y,layer,obj_cash);
-			instance_destroy();
+			if(room == rm_01)
+			{
+				instance_create_layer(x,y,layer,obj_experiencia);
+				instance_create_layer(x,y,layer,obj_cash);
+				instance_destroy();
+			}
+			else
+			{
+				instance_destroy();
+			}
 		}
 }
 

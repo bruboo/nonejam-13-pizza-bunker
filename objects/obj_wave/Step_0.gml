@@ -13,27 +13,30 @@ for(var i = array_length(waves)-1; i >= 0; i--)
 		break;
 	}
 }
-
-
-var _wave = waves[wave - 1];
-
-if(!wave_parada && !global.parar)
+if(wave > array_length(waves))
 {
-	timer_spawn -= delta_time / 1000000;
+	wave = array_length(waves);
+}
 
+if(wave > 0)
+{
+	var _wave = waves[wave - 1];
 
-	var _qtd_inimigos = instance_number(obj_entidade_inimigo);
-
-
-	if(timer_spawn <= 0 && _qtd_inimigos < _wave.limite)
+	if(!wave_parada && !global.parar)
 	{
-		var _inimigo = escolhe_inimigo(_wave.inimigos);
+		timer_spawn -= delta_time / 1000000;
 
-		spawn_inimigo(_inimigo);
+		var _qtd_inimigos = instance_number(obj_entidade_inimigo);
 
-		timer_spawn = _wave.intervalo;
+		if(timer_spawn <= 0 && _qtd_inimigos < _wave.limite)
+		{
+			var _inimigo = escolhe_inimigo(_wave.inimigos);
+
+			spawn_inimigo(_inimigo);
+
+			timer_spawn = _wave.intervalo;
+		}
 	}
-
 }
 
 //eventos
@@ -56,10 +59,20 @@ for(var i = 0; i < array_length(eventos); i++)
 				{
 					estado = "aberta";
 				}
-				instance_create_layer(1408,1376,"Instances",obj_ativa_wave);
 			break;
-
-
+			
+			case "fim tutorial":
+				parar_wave();
+				with(obj_comeca_jogo)
+				{
+					mandy_fim_ativa = true;
+					mandy_fim_frame = 0;
+					mandy_fim_x = display_get_gui_width();
+					mandy_fim_entrando = true;
+				}
+				
+			break;
+			
 			case "boss":
 				//parar_wave();
 				instance_create_layer(1410,2082,"Instances",obj_inimigo_boss);

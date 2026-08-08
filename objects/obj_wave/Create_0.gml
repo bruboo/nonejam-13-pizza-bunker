@@ -1,8 +1,11 @@
 tempo_ms = 0;
 timer_y = 30;
 
-wave = 1;
+wave = 0;
 timer_spawn = 0;
+
+
+
 
 // referências dos objetos
 inimigo_normal = obj_inimigo;
@@ -10,7 +13,7 @@ inimigo_1 = obj_inimigo_1;
 inimigo_2 = obj_inimigo_2;
 
 // waves
-waves = [
+waves_jogo = [
 	{
 		tempo: 0,
 		inimigos: [
@@ -40,8 +43,45 @@ waves = [
 		],
 		limite: 100,
 		intervalo: 0.3
+	},
+	
+	{
+		tempo: 160,
+		inimigos: [
+			{obj: inimigo_1, chance: 50},
+			{obj: inimigo_2, chance: 50}
+		],
+		limite: 200,
+		intervalo: 0.1
 	}
 ];
+
+
+// waves tutorial
+waves_tutorial = [
+	{
+		tempo: 8,
+		inimigos: [
+			{obj: inimigo_normal, chance: 100}
+		],
+		limite: 30,
+		intervalo: 1
+	},
+
+	{
+		// é 60 na vdd
+		tempo: 15,
+		inimigos: [
+			{obj: inimigo_normal, chance: 100}			
+		],
+		limite: 60,
+		intervalo: 0.9
+	}
+	
+];
+
+
+
 
 escolhe_inimigo = function(_lista)
 {
@@ -119,8 +159,8 @@ upgrades = [
 
 /////////
 		{
-			frame:1,
-			preco:67,
+			frame:0,
+			preco:100,
 			ativa: function()
 			{
 				
@@ -128,16 +168,16 @@ upgrades = [
 		},
 /////////
 		{
-			frame:3,
-			preco:56630,
+			frame:1,
+			preco:100,
 			ativa: function()
 			{
-			       
+			     global.forno_sniper_ativo = true;
 			}
 		},
 /////////
 		{
-			frame:0,
+			frame:2,
 			preco:100,
 			ativa: function()
 			{
@@ -150,16 +190,36 @@ upgrades = [
 		},
 /////////
 		{
-			frame:2,
-			preco:150,
+			frame:3,
+			preco:100,
 			ativa: function()
 			{
 				
+				global.forno_xplode_ativo = true;		
+			}
+		},
+		/////////
+		{
+			frame:4,
+			preco:100,
+			ativa: function()
+			{
+				global.pizza_extra_ativa = true;
+			}
+		},
+		/////////
+		{
+			frame:5,
+			preco:100,
+			ativa: function()
+			{
+				array_push(global.fornos,
+				{
+				    frame: 0,
+				    ocupado: false
+				});
 			}
 		}
-
-
-
 
 ]
 //salva as 3 cartas
@@ -189,12 +249,7 @@ gera_upgrades_loja = function()
 	}
 }
 //aqui determina o tempo q vai ser chamado a porra
-eventos = [
-	{
-		tempo: 30,
-		acao: "loja",
-		feito: false
-	},
+eventos_jogo = [
 	{
 		tempo: 60,
 		acao: "loja",
@@ -210,13 +265,47 @@ eventos = [
 		acao: "loja",
 		feito: false
 	},
-
 	{
-		tempo: 600,
+		tempo: 200,
+		acao: "loja",
+		feito: false
+	},
+	{
+		tempo: 250,
+		acao: "loja",
+		feito: false
+	},
+	{
+		tempo: 300,
+		acao: "loja",
+		feito: false
+	},
+	{
+		tempo: 400,
 		acao: "boss",
 		feito: false
 	}
 ];
+
+//aqui determina o tempo q vai ser chamado a porra
+eventos_tutorial = [
+	{
+		tempo: 40,
+		acao: "fim tutorial",
+		feito: false
+	}
+	
+];
+if(room == rm_tutorial)
+{
+	waves = waves_tutorial;
+	eventos = eventos_tutorial;
+}
+else
+{
+	waves = waves_jogo;
+	eventos = eventos_jogo;
+}
 
 //saber se a porra da wave ta parada
 wave_parada = false;
@@ -237,3 +326,4 @@ voltar_wave = function()
 {
 	wave_parada = false;
 }
+

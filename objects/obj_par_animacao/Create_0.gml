@@ -20,7 +20,7 @@ face = 0;
 //imagem atual da sprite
 image_ind = 0;
 //velocidade da animaçao
-image_spd = 10/ 60;
+image_spd = 12/ 60;
 
 //quantidade de imagens na sprite
 image_numb = sprite_get_number(sprite);

@@ -1,7 +1,7 @@
 
 //usar isso aqui quando quiser sincar o alpha com a vida da particula
 //image_alpha = life / life_max;
-
+depth = -y;
 
 life--;
 

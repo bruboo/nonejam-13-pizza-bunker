@@ -27,8 +27,11 @@ segue_alvo = function()
 	_cam_x =  x - _view_w*.5;
 	_cam_y =  y - _view_h*.5;
 	
-	x = variable_instance_exists(alvo, "velh") ? round(lerp(x, alvo.x, .1)) + alvo.velh/2 : round(lerp(x, alvo.x, .1));
-	y = variable_instance_exists(alvo, "velv") ? round(lerp(y, alvo.y, .1)) + alvo.velv/2 : round(lerp(y, alvo.y, .1));
+	x = variable_instance_exists(alvo, "velh") ? lerp(x, alvo.x, .1) + alvo.velh / 2 : lerp(x, alvo.x, .1);
+	y = variable_instance_exists(alvo, "velv") ? lerp(y, alvo.y, .1) + alvo.velv / 2 : lerp(y, alvo.y, .1);
+
+	x = round(x);
+	y = round(y); 
 	
 	#region Centralizando o player
 	//Setando a borda da camera

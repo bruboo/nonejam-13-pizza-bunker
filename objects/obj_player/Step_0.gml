@@ -1,3 +1,5 @@
+event_inherited()
+
 if(global.parar)
 {
 	velh = 0;
@@ -24,17 +26,11 @@ while (xp >= proximo_lvl)
 
 if (lvl_stack > 0 && !instance_exists(obj_lvl_up))
 {
-    instance_create_layer(x, y, layer, obj_lvl_up);
+    instance_create_layer(x, y, "Instances", obj_lvl_up);
     lvl_stack--;
 }
 
 
-
-
-
-
-velh = (global._key_right - global._key_left) * move_speed;
-velv = (global._key_down - global._key_up) * move_speed;
 
 //O player é um listener
 audio_listener_position(x, y, 0);
@@ -56,11 +52,6 @@ else
 }
 
 
-if(vida < 0)
-{
-	show_message("morreu")
-	game_end();
-}
 
 
 image_xscale = lerp(image_xscale, 1, 0.15);

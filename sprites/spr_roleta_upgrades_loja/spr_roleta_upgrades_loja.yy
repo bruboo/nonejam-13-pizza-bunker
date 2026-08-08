@@ -3,7 +3,7 @@
   "%Name":"spr_roleta_upgrades_loja",
   "bboxMode":0,
   "bbox_bottom":265,
-  "bbox_left":3,
+  "bbox_left":4,
   "bbox_right":226,
   "bbox_top":0,
   "collisionKind":1,
@@ -12,17 +12,19 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"v1","%Name":"fc8ac3dc-9528-42eb-82aa-d1830236d700","name":"fc8ac3dc-9528-42eb-82aa-d1830236d700","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"v1","%Name":"7e6633f3-0f2b-4d11-9b73-f4fb6b58a3d5","name":"7e6633f3-0f2b-4d11-9b73-f4fb6b58a3d5","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"v1","%Name":"5bfe1ec7-bd81-452a-89a1-e4552cdc4253","name":"5bfe1ec7-bd81-452a-89a1-e4552cdc4253","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"v1","%Name":"7370f116-8991-4910-b675-b6044e3dec1a","name":"7370f116-8991-4910-b675-b6044e3dec1a","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"46857f78-1fe1-40b9-a552-4894e1cb8e92","name":"46857f78-1fe1-40b9-a552-4894e1cb8e92","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"d9a93008-7886-4f1a-a0ac-e6e63776c267","name":"d9a93008-7886-4f1a-a0ac-e6e63776c267","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"e19156ec-e5d7-42c2-ab56-cf773339706b","name":"e19156ec-e5d7-42c2-ab56-cf773339706b","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"3e9e1834-dcf8-41d0-a156-605522d0d3ce","name":"3e9e1834-dcf8-41d0-a156-605522d0d3ce","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"e82d0c01-bc79-416c-8deb-3102aca00991","name":"e82d0c01-bc79-416c-8deb-3102aca00991","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"9844e064-0a06-421c-9d96-8487a168e849","name":"9844e064-0a06-421c-9d96-8487a168e849","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
   "height":267,
   "HTile":false,
   "layers":[
-    {"$GMImageLayer":"","%Name":"0b3f54e9-1e7d-4b39-a641-d3be69c8d285","blendMode":0,"displayName":"default","isLocked":false,"name":"0b3f54e9-1e7d-4b39-a641-d3be69c8d285","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"fcb81f12-8b24-441c-a0cb-9b0d932de784","blendMode":0,"displayName":"default","isLocked":false,"name":"fcb81f12-8b24-441c-a0cb-9b0d932de784","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"spr_roleta_upgrades_loja",
   "nineSlice":null,
@@ -52,7 +54,7 @@
     },
     "eventStubScript":null,
     "eventToFunction":{},
-    "length":4.0,
+    "length":6.0,
     "lockOrigin":false,
     "moments":{
       "$KeyframeStore<MomentsEventKeyframe>":"",
@@ -72,17 +74,23 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"fc8ac3dc-9528-42eb-82aa-d1830236d700","path":"sprites/spr_roleta_upgrades_loja/spr_roleta_upgrades_loja.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"90cd625d-8102-4ffd-a363-19e99363fce2","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"46857f78-1fe1-40b9-a552-4894e1cb8e92","path":"sprites/spr_roleta_upgrades_loja/spr_roleta_upgrades_loja.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"08b7d3f9-3352-46fe-bd07-69fca8573012","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"7e6633f3-0f2b-4d11-9b73-f4fb6b58a3d5","path":"sprites/spr_roleta_upgrades_loja/spr_roleta_upgrades_loja.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"bc1d85ca-07ce-475e-b2ae-228386383612","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"d9a93008-7886-4f1a-a0ac-e6e63776c267","path":"sprites/spr_roleta_upgrades_loja/spr_roleta_upgrades_loja.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"f9a82b21-c16c-4af5-909d-f3a01aac4456","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"5bfe1ec7-bd81-452a-89a1-e4552cdc4253","path":"sprites/spr_roleta_upgrades_loja/spr_roleta_upgrades_loja.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"9b2a0079-cf32-460e-a83b-97d1798947cb","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"e19156ec-e5d7-42c2-ab56-cf773339706b","path":"sprites/spr_roleta_upgrades_loja/spr_roleta_upgrades_loja.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"563ee710-9622-441d-acbf-c80aa2ec5c6e","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"7370f116-8991-4910-b675-b6044e3dec1a","path":"sprites/spr_roleta_upgrades_loja/spr_roleta_upgrades_loja.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"0c729195-b635-4177-b7d8-2d6bfedc9cce","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"3e9e1834-dcf8-41d0-a156-605522d0d3ce","path":"sprites/spr_roleta_upgrades_loja/spr_roleta_upgrades_loja.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"c619f060-aaf0-4973-895b-7e9baf29aad3","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"e82d0c01-bc79-416c-8deb-3102aca00991","path":"sprites/spr_roleta_upgrades_loja/spr_roleta_upgrades_loja.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"286a52d4-6d68-4c2f-9b45-48fd521ef93d","IsCreationKey":false,"Key":4.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"9844e064-0a06-421c-9d96-8487a168e849","path":"sprites/spr_roleta_upgrades_loja/spr_roleta_upgrades_loja.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"73df1718-f4f7-4387-ad75-4700f9ea2bff","IsCreationKey":false,"Key":5.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,

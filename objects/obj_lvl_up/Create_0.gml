@@ -4,7 +4,8 @@ upgrades = [
 
 /////////
 		{
-			frame:1,
+			frame:0,
+			descricao:0,
 			ativa: function()
 			{
 				obj_player.dano_bonus += 1;
@@ -12,7 +13,8 @@ upgrades = [
 		},
 /////////
 		{
-			frame:3,
+			frame:1,
+			descricao:1,
 			ativa: function()
 			{
 			        obj_player.vida_max += 2;
@@ -21,15 +23,17 @@ upgrades = [
 		},
 /////////
 		{
-			frame:4,
+			frame:2,
+			descricao:2,
 			ativa: function()
 			{
-				obj_player.timer_tiro -= 2;
+				obj_player.timer_tiro -= 3;
 			}
 		},
 /////////
 		{
-			frame:0,
+			frame:3,
+			descricao:3,
 			ativa: function()
 			{
 				obj_player.move_speed += 1;
@@ -37,15 +41,31 @@ upgrades = [
 		},
 /////////
 		{
-			frame:2,
+			frame:4,
+			descricao:4,
 			ativa: function()
 			{
-				obj_player.res_pizza += 1;
+				obj_player.res_pizza += 1;	
+			}
+		},
+/////////		
+		{
+			frame:5,
+			descricao:5,
+			ativa: function()
+			{
+				obj_player.rastro_de_fogo_ativo = true;	
+			}
+		},
+		/////////		
+		{
+			frame:6,
+			descricao:6,
+			ativa: function()
+			{
+				obj_player.rastro_de_queijo_ativo = true;	
 			}
 		}
-
-
-
 
 ]
 
@@ -83,7 +103,12 @@ repeat(3)
 
 //mouse em cima do bgl
 cima_x = [];
-for (var i = 0; i < array_length(upgrade_escolha); i++) cima_x[i] = 0;
+hover_scale = [];
+for (var i = 0; i < array_length(upgrade_escolha); i++) 
+{
+	cima_x[i] = 0;
+	hover_scale[i] = 1;
+}
 carta_selecionada = -1;
 
 //carta sai pra direita
@@ -97,7 +122,12 @@ entrada_x = display_get_gui_width();
 delay_clike = 25;
 
 
+desc_scale = [];
 
+for(var i = 0; i < array_length(upgrade_escolha); i++)
+{
+	desc_scale[i] = 0;
+}
 
 
 

@@ -1,6 +1,11 @@
 {
   "$GMOperaGXOptions":"v1",
   "%Name":"Opera GX",
+  "ConfigValues":{
+    "modo_normal":{
+      "option_operagx_interpolate_pixels":"false",
+    },
+  },
   "name":"Opera GX",
   "option_operagx_display_cursor":true,
   "option_operagx_editUrl":"",

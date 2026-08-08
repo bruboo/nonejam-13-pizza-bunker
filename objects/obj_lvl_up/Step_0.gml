@@ -8,7 +8,7 @@ if (delay_clike > 0)
 
 if (saindo)
 {
-    saida_x = lerp(saida_x, display_get_gui_width()*2, 0.1);
+    saida_x = lerp(saida_x, display_get_gui_width(), 0.1);
 
     if (saida_x > display_get_gui_width() - 10)
     {
