@@ -19,7 +19,7 @@ if(global._key_interate)
 					}else
 					{
 						//scpt_transition_start(rm_tutorial,0,0,seq_FadeOut,seq_FadeIn);
-						room_goto(rm_01);						
+						room_goto(rm_tutorial);						
 					}
 				break;
 				

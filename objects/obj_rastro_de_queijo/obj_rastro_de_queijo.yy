@@ -12,7 +12,10 @@
     "name":"upgrades obj",
     "path":"folders/Objetos/upgrades obj.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_slow",
+    "path":"objects/obj_slow/obj_slow.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

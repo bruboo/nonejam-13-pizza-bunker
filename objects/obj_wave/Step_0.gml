@@ -65,10 +65,7 @@ for(var i = 0; i < array_length(eventos); i++)
 				parar_wave();
 				with(obj_comeca_jogo)
 				{
-					mandy_fim_ativa = true;
-					mandy_fim_frame = 0;
-					mandy_fim_x = display_get_gui_width();
-					mandy_fim_entrando = true;
+					obj_comeca_jogo.mandy_fim_chamar();
 				}
 				
 			break;

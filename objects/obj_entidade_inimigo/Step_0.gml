@@ -5,7 +5,12 @@ if(global.parar)
 	velv = 0;
 	return;
 }
+slow = 1;
 
+if (place_meeting(x, y, obj_slow))
+{
+    slow = 0.5;
+}
 estado();
 
 

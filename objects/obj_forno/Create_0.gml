@@ -8,11 +8,11 @@ sprites = [
 
 //pizza_tocou = false;
 //multiplicador de dano do forno
-dano = 4;
+dano = 2;
 //dano do forno
-dano_base = 10;
+dano_base = 5;
 //velocidade q empurra a pizza
-poder = 6;
+poder = 5;
 //tempo de vida da pizza adicionado
 timer_boost = 80;
 

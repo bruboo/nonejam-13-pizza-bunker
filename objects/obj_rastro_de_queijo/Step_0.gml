@@ -1,4 +1,4 @@
-
+event_inherited()
 
 if (timer_alpha > 0)
 {

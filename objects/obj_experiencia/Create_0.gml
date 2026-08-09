@@ -3,7 +3,7 @@ velv = 0;
 vel = 1;
 vel_max = 40;
 estado = "drop";
-
+timer = 800;
 controla_drop = function()
 {
 	switch(estado)

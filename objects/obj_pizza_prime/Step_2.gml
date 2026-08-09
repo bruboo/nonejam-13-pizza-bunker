@@ -10,7 +10,7 @@ if (passos < 1)
 // Se a pizza nasceu dentro da parede
 if (place_meeting(x, y, obj_colisor))
 {
-	create_part(1,10,10,x,y,velh,velv);
+	create_part(5,15,20,x,y,0,0);
     instance_destroy();
     exit;
 }
@@ -29,7 +29,8 @@ repeat(passos)
     if (place_meeting(x + mov_x, y, obj_colisor))
     {
 		ultimo_forno = noone;
-		create_part(1,10,10,x,y,velh,velv);
+		create_part(5,15,20,x,y,0,0);
+		pizza_pedacos();
 		lista_inimigos = [];
         velh = -velh;
         mov_x = velh / passos;
@@ -42,7 +43,8 @@ repeat(passos)
     if (place_meeting(x, y + mov_y, obj_colisor))
     {
 		ultimo_forno = noone;
-		create_part(1,10,10,x,y,velh,velv);
+		create_part(5,10,10,x,y,velh,velv);
+		pizza_pedacos();
 		lista_inimigos = [];
         velv = -velv;
         mov_y = velv / passos;

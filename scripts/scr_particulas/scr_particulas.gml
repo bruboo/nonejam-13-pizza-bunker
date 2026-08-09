@@ -10,40 +10,32 @@ function create_part(_type = 0,_life_min = 0,_life_max,_x = 0, _y = 0,_velh = 0,
 		//particulas fumaça em volta do forno
 		case 0:
 		{
-			//quantidade de particulas
-		var _qtd = irandom_range(10,30);
-		
-		// Direção do bgl
-	    var _dir = point_direction(0, 0, _velh, _velv);
-		
-		//direção ao contrario
-		//esse codigo com o +180 no final para fazer as particluas sairem ao contrario
-		
-		//var _dir = point_direction(0, 0, _velh, _velv)+180;
-		
-				
-			for (var i = 0; i < _qtd; i++)
-			{
-			    var _ang = (360 / _qtd) * i;
+		    var _qtd = irandom_range(3,5);
 
-			    var _part = instance_create_layer(_x, _y, "Brilho", obj_part_alpha);
+		    var _dir = point_direction(0, 0, _velh, _velv);
 
-			    var _part_spd = random_range(2, 3);
-			    var _size = random_range(0.5, 1);
-			    var _life = random_range(_life_min, _life_max);
+		    for (var i = 0; i < _qtd; i++)
+		    {
+		        var _ang = (360 / _qtd) * i;
 
-			    _part.velh = lengthdir_x(_part_spd, _ang);
-			    _part.velv = lengthdir_y(_part_spd, _ang);
+		        var _part = instance_create_layer(_x, _y, "Brilho", obj_part_alpha);
 
-			    _part.image_xscale = _size;
-			    _part.image_yscale = _size;
-			    _part._life_max = _life;
-			    _part.life = _life;
-				_part.image_angle = random(360);
-			    _part.sprite_index = spr_fumaca;
-			}
-		}			
-		break;		
+		        var _part_spd = random_range(2,4);
+		        var _size = random_range(0.5,1);
+		        var _life = random_range(30,60);
+
+		        _part.velh = lengthdir_x(_part_spd, _ang);
+		        _part.velv = lengthdir_y(_part_spd, _ang);
+
+		        _part.image_xscale = _size;
+		        _part.image_yscale = _size;
+		        _part._life_max = _life;
+		        _part.life = _life;
+		        _part.image_angle = random(360);
+		        _part.sprite_index = spr_fumaca;
+		    }
+		}
+		break;	
 		case 1:
 		{
 				//quantidade de particulas
@@ -394,7 +386,36 @@ function create_part(_type = 0,_life_min = 0,_life_max,_x = 0, _y = 0,_velh = 0,
 				_part.image_index = irandom(sprite_get_number(spr_fogo_forno)- 1);
 			}
 		}			
-		break;		
+		break;
+		
+		case 9:
+		{
+		    var _qtd = irandom_range(1,3);
+
+		    var _dir = point_direction(0, 0, _velh, _velv);
+
+		    for (var i = 0; i < _qtd; i++)
+		    {
+		        var _ang = (360 / _qtd) * i;
+
+		        var _part = instance_create_layer(_x, _y, "Brilho", obj_part_alpha);
+
+		        var _part_spd = random_range(2,4);
+		        var _size = random_range(0.5,1);
+		        var _life = random_range(30,60);
+
+		        _part.velh = lengthdir_x(_part_spd, _ang);
+		        _part.velv = lengthdir_y(_part_spd, _ang);
+
+		        _part.image_xscale = _size;
+		        _part.image_yscale = _size;
+		        _part._life_max = _life;
+		        _part.life = _life;
+		        _part.image_angle = random(360);
+		        _part.sprite_index = spr_fumaca;
+		    }
+		}
+		break;	
 	}
 	
 	

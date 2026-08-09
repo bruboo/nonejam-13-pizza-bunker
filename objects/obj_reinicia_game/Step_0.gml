@@ -12,6 +12,10 @@ if (_hover_reiniciar && mouse_check_button_pressed(mb_left))
 	global.forno_xplode_ativo = false;
 	global.forno_sniper_ativo = false;
 	global.pizza_extra_ativa = false;
+	global.pizza_de_fogo_ativo = false;
+	global.pizza_slow_ativo = false;
+	global.pizza_xplode_ativo = false;
+	global.pizza_pedaco_ativa = false;
 	room_restart();
 }
 

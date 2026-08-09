@@ -52,7 +52,7 @@ ajusta_sprite = function(_indice_array)
 	//Zerando a image_ind depois da animação acabar
 	image_ind %= image_numb;
 }
-
+slow = 1;
 
 vida = 2;
 dano = 1;
@@ -75,9 +75,8 @@ toma_dano = function(_velv = 0,_velh = 0,_dano_base = 0)
 		var _dano_bonus = instance_exists(obj_player) ? obj_player.dano_bonus : 0;
 		vida -= _dano_base + _dano_bonus;
 		var _popup = instance_create_layer(x + random_range(-6,6), bbox_top - 8 + random_range(-2,2), "Brilho", obj_popup);
-		_popup.valor = _dano_base + _dano_bonus;
-		create_part(0,10,25,x,y,_velh,_velv);
-	    create_part(4,10,25,x,y,_velh,_velv);
+		_popup.valor = round(_dano_base + _dano_bonus);
+		create_part(9,10,25,x,y,_velh,_velv);
 		image_xscale = 1.8;
 		image_yscale = 1.8;
 	
@@ -99,35 +98,35 @@ toma_dano = function(_velv = 0,_velh = 0,_dano_base = 0)
 
 calcula_movimento = function()
 {
-	velh = lengthdir_x(vel, dir_mov);
-	velv = lengthdir_y(vel, dir_mov);
+    velh = lengthdir_x(vel * slow, dir_mov);
+    velv = lengthdir_y(vel * slow, dir_mov);
 
-	var _lista = ds_list_create();
+    var _lista = ds_list_create();
 
-	collision_circle_list(x, y, 48, obj_entidade_inimigo, false, true, _lista, true);
+    collision_circle_list(x, y, 48, obj_entidade_inimigo, false, true, _lista, true);
 
-	for (var i = 0; i < ds_list_size(_lista); i++)
-	{
-		var _inimigo = _lista[| i];
+    for (var i = 0; i < ds_list_size(_lista); i++)
+    {
+        var _inimigo = _lista[| i];
 
-		if (_inimigo != id)
-		{
-			var _dist = point_distance(x, y, _inimigo.x, _inimigo.y);
+        if (_inimigo != id)
+        {
+            var _dist = point_distance(x, y, _inimigo.x, _inimigo.y);
 
-			if (_dist < 32)
-			{
-				var _dir = point_direction(_inimigo.x, _inimigo.y, x, y);
-				var _forca = (60 - _dist) * 0.08;
+            if (_dist < 32)
+            {
+                var _dir = point_direction(_inimigo.x, _inimigo.y, x, y);
+                var _forca = (60 - _dist) * 0.08;
 
-				velh += lengthdir_x(_forca, _dir);
-				velv += lengthdir_y(_forca, _dir);
-			}
-		}
-	}
+                velh += lengthdir_x(_forca, _dir);
+                velv += lengthdir_y(_forca, _dir);
+            }
+        }
+    }
 
-	ds_list_destroy(_lista);
+    ds_list_destroy(_lista);
 
-	move_and_collide(velh, velv, obj_player);
+    move_and_collide(velh, velv, obj_player);
 }
 
 

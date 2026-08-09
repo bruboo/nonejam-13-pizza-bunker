@@ -5,6 +5,9 @@
     "modo_normal":{
       "option_windows_interpolate_pixels":"false",
     },
+    "modo_debug":{
+      "option_windows_interpolate_pixels":"false",
+    },
   },
   "name":"Windows",
   "option_windows_allow_fullscreen_switching":false,

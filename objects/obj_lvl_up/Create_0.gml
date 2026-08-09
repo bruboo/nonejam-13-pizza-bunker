@@ -1,105 +1,31 @@
 
 
-upgrades = [
-
-/////////
-		{
-			frame:0,
-			descricao:0,
-			ativa: function()
-			{
-				obj_player.dano_bonus += 1;
-			}
-		},
-/////////
-		{
-			frame:1,
-			descricao:1,
-			ativa: function()
-			{
-			        obj_player.vida_max += 2;
-					obj_player.vida += 2;
-			}
-		},
-/////////
-		{
-			frame:2,
-			descricao:2,
-			ativa: function()
-			{
-				obj_player.timer_tiro -= 3;
-			}
-		},
-/////////
-		{
-			frame:3,
-			descricao:3,
-			ativa: function()
-			{
-				obj_player.move_speed += 1;
-			}
-		},
-/////////
-		{
-			frame:4,
-			descricao:4,
-			ativa: function()
-			{
-				obj_player.res_pizza += 1;	
-			}
-		},
-/////////		
-		{
-			frame:5,
-			descricao:5,
-			ativa: function()
-			{
-				obj_player.rastro_de_fogo_ativo = true;	
-			}
-		},
-		/////////		
-		{
-			frame:6,
-			descricao:6,
-			ativa: function()
-			{
-				obj_player.rastro_de_queijo_ativo = true;	
-			}
-		}
-
-]
-
 
 
 upgrade_escolha = [];
 
-var usados = [];
+var _disponiveis = [];
 
-repeat(3)
+for (var i = 0; i < array_length(global.player_upgrades); i++)
 {
-    var indice;
-    var repetido;
-
-    do
-    {
-        indice = irandom(array_length(upgrades) - 1);
-
-        repetido = false;
-
-        for (var i = 0; i < array_length(usados); i++)
-        {
-            if (usados[i] == indice)
-            {
-                repetido = true;
-                break;
-            }
-        }
-
-    } until (!repetido);
-
-    array_push(usados, indice);
-    array_push(upgrade_escolha, upgrades[indice]);
+	if (global.player_upgrades[i].nivel < global.player_upgrades[i].maximo)
+	{
+		array_push(_disponiveis, i);
+	}
 }
+
+var _qtd = min(3, array_length(_disponiveis));
+
+repeat(_qtd)
+{
+	var _posicao = irandom(array_length(_disponiveis) - 1);
+	var _indice = _disponiveis[_posicao];
+
+	array_push(upgrade_escolha, global.player_upgrades[_indice]);
+
+	array_delete(_disponiveis, _posicao, 1);
+}
+
 
 //mouse em cima do bgl
 cima_x = [];

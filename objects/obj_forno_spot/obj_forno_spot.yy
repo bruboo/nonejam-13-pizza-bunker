@@ -32,8 +32,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_forno_spot",
-    "path":"sprites/spr_forno_spot/spr_forno_spot.yy",
+    "name":"spr_forno",
+    "path":"sprites/spr_forno/spr_forno.yy",
   },
   "spriteMaskId":null,
   "visible":true,

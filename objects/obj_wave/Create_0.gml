@@ -51,7 +51,7 @@ waves_jogo = [
 			{obj: inimigo_1, chance: 50},
 			{obj: inimigo_2, chance: 50}
 		],
-		limite: 200,
+		limite: 100,
 		intervalo: 0.1
 	}
 ];
@@ -138,20 +138,47 @@ draw_numero_alinhado = function(_sprite, _valor, _x, _y, _espaco, _cor, _align)
 // criar inimigo
 spawn_inimigo = function(_obj)
 {
-	var _quantidade_spawn = instance_number(obj_spawn);
-
-	if(_quantidade_spawn <= 0)
+	if (instance_number(obj_entidade_inimigo) >= 150)
 		return;
 
+	var _cam = global.game_settings.view_cam;
 
-	var _spawn = instance_find(obj_spawn, irandom(_quantidade_spawn - 1));
+	var _cam_x = camera_get_view_x(_cam);
+	var _cam_y = camera_get_view_y(_cam);
+	var _cam_w = camera_get_view_width(_cam);
+	var _cam_h = camera_get_view_height(_cam);
 
+	var _margem_mapa = 224;
+	var _margem_camera = 200;
 
-	var _x_spawn = random_range(_spawn.x - _spawn.largura_area * 0.5, _spawn.x + _spawn.largura_area * 0.5);
-	var _y_spawn = random_range(_spawn.y - _spawn.altura_area * 0.5, _spawn.y + _spawn.altura_area * 0.5);
+	var _x_spawn;
+	var _y_spawn;
 
+	repeat(30)
+	{
+		_x_spawn = random_range(_margem_mapa, 2845 - _margem_mapa);
+		_y_spawn = random_range(_margem_mapa, 2200 - _margem_mapa);
 
-	instance_create_layer(_x_spawn,_y_spawn,"Instances",_obj);
+		// Não pode nascer dentro da câmera
+		if (point_in_rectangle(
+			_x_spawn,
+			_y_spawn,
+			_cam_x - _margem_camera,
+			_cam_y - _margem_camera,
+			_cam_x + _cam_w + _margem_camera,
+			_cam_y + _cam_h + _margem_camera
+		))
+		{
+			continue;
+		}
+
+		// Não pode nascer dentro de parede
+		if (place_meeting(_x_spawn, _y_spawn, obj_colisor))
+			continue;
+
+		instance_create_layer(_x_spawn, _y_spawn, "Instances", _obj);
+		return;
+	}
 };
 
 //upgrades da loja aqui
@@ -163,13 +190,18 @@ upgrades = [
 			preco:100,
 			ativa: function()
 			{
-				
+				array_push(global.pimenta,
+				{
+				    frame: 0,
+				    ocupado: false
+				});	
 			}
 		},
 /////////
 		{
 			frame:1,
 			preco:100,
+			comprado: false,
 			ativa: function()
 			{
 			     global.forno_sniper_ativo = true;
@@ -192,6 +224,7 @@ upgrades = [
 		{
 			frame:3,
 			preco:100,
+			comprado: false,
 			ativa: function()
 			{
 				
@@ -202,6 +235,7 @@ upgrades = [
 		{
 			frame:4,
 			preco:100,
+			comprado: false,
 			ativa: function()
 			{
 				global.pizza_extra_ativa = true;
@@ -213,7 +247,7 @@ upgrades = [
 			preco:100,
 			ativa: function()
 			{
-				array_push(global.fornos,
+				array_push(global.queijos,
 				{
 				    frame: 0,
 				    ocupado: false
@@ -227,31 +261,51 @@ global.upgrades_loja = [];
 
 gera_upgrades_loja = function()
 {
-	global.upgrades_loja = [];
+    global.upgrades_loja = [];
 
-	var usados = [];
+    var disponiveis = [];
 
-	repeat(3)
-	{
-		var indice;
-		var repetido;
+    // Pega apenas os upgrades que ainda podem aparecer
+    for (var i = 0; i < array_length(upgrades); i++)
+    {
+        var _upgrade = upgrades[i];
 
-		do
-		{
-			indice = irandom(array_length(upgrades) - 1);
+        if (variable_struct_exists(_upgrade, "comprado") && _upgrade.comprado)
+        {
+            continue;
+        }
 
-			repetido = array_contains(usados, indice);
+        array_push(disponiveis, i);
+    }
 
-		} until(!repetido);
+    var usados = [];
 
-		array_push(usados, indice);
-		array_push(global.upgrades_loja, upgrades[indice]);
-	}
+    // Sorteia até 3 upgrades
+    var _quantidade = min(3, array_length(disponiveis));
+
+    repeat(_quantidade)
+    {
+        var _indice;
+        var _repetido;
+
+        do
+        {
+            _indice = irandom(array_length(disponiveis) - 1);
+            _repetido = array_contains(usados, _indice);
+
+        } until(!_repetido);
+
+        array_push(usados, _indice);
+
+        var _indice_upgrade = disponiveis[_indice];
+
+        array_push(global.upgrades_loja, upgrades[_indice_upgrade]);
+    }
 }
 //aqui determina o tempo q vai ser chamado a porra
 eventos_jogo = [
 	{
-		tempo: 60,
+		tempo: 2,
 		acao: "loja",
 		feito: false
 	},
@@ -290,7 +344,7 @@ eventos_jogo = [
 //aqui determina o tempo q vai ser chamado a porra
 eventos_tutorial = [
 	{
-		tempo: 40,
+		tempo: 60,
 		acao: "fim tutorial",
 		feito: false
 	}
@@ -327,3 +381,153 @@ voltar_wave = function()
 	wave_parada = false;
 }
 
+global.player_upgrades = [
+
+///////// dano
+		{
+			frame:0,
+			descricao:0,
+			nivel:0,
+			maximo:5000,
+			ativa: function()
+			{
+				obj_player.dano_bonus += 1;
+			}
+		},
+/////////
+		{
+			frame:1,
+			descricao:1,
+			nivel:0,
+			maximo:5000,
+			ativa: function()
+			{
+			        obj_player.vida_max += 2;
+					obj_player.vida += 2;
+			}
+		},
+/////////
+		{
+			frame:2,
+			descricao:2,
+			nivel:0,
+			maximo:10,
+			ativa: function()
+			{
+				obj_player.timer_tiro -= 3;
+			}
+		},
+/////////
+		{
+			frame:3,
+			descricao:3,
+			nivel:0,
+			maximo:500,
+			ativa: function()
+			{
+				obj_player.move_speed += 1;
+			}
+		},
+/////////
+		{
+			frame:4,
+			descricao:4,
+			nivel:0,
+			maximo:3,
+			ativa: function()
+			{
+				obj_player.res_pizza += 1;	
+			}
+		},
+/////////		
+		{
+			frame:5,
+			descricao:5,
+			nivel:0,
+			maximo:1,
+			ativa: function()
+			{
+				obj_player.rastro_de_fogo_ativo = true;	
+			}
+		},
+		/////////		
+		{
+			frame:6,
+			descricao:6,
+			nivel:0,
+			maximo:1,
+			ativa: function()
+			{
+				obj_player.rastro_de_queijo_ativo = true;	
+			}
+		},
+		/////////		
+		{
+			frame:7,
+			descricao:7,
+			nivel:0,
+			maximo:1,
+			ativa: function()
+			{
+				global.pizza_de_fogo_ativo = true;	
+				
+			}
+		},
+		/////////		
+		{
+			frame:8,
+			descricao:8,
+			nivel:0,
+			maximo:1,
+			ativa: function()
+			{
+				obj_player.slow_area_ativo = true;
+				instance_create_layer(obj_player.x,obj_player.y,"chao",obj_slow_area_player);
+			}
+		},
+		/////////		
+		{
+			frame:9,
+			descricao:9,
+			nivel:0,
+			maximo:1,
+			ativa: function()
+			{
+				global.pizza_slow_ativo = true;
+			}
+		},
+		/////////		
+		{
+			frame:10,
+			descricao:10,
+			nivel:0,
+			maximo:1,
+			ativa: function()
+			{
+				global.pizza_xplode_ativo = true;
+			}
+		},
+		/////////		
+		{
+			frame:11,
+			descricao:11,
+			nivel:0,
+			maximo:1,
+			ativa: function()
+			{
+				global.pizza_pedaco_ativa = true;
+			}
+		},
+		/////////		
+		{
+			frame:12,
+			descricao:12,
+			nivel:0,
+			maximo:500,
+			ativa: function()
+			{
+				obj_player.tempo_pizza += 10;
+			}
+		}
+
+]

@@ -1,9 +1,15 @@
+
+
+
 //Desenhando o quadrado na tela de visão
 draw_set_color(c_black);
 draw_set_alpha(.5);
 draw_rectangle(-1, -1, display_get_gui_width(), display_get_gui_height(), false);
 draw_set_alpha(1);
 draw_set_color(-1);
+
+draw_sprite_ext(spr_wall,0,0,0,0.5,0.5,1,c_white,1);
+
 
 var _x_text    =  display_get_gui_width()/2;
 var _y_text    =  index ? display_get_gui_height()/2 - 45 : display_get_gui_height()/2 - round(45/2);

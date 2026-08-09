@@ -45,6 +45,9 @@ timer_tiro = 70;
 
 //resistencia da pizza
 res_pizza = 2;
+//tempo q a pizza dura
+tempo_pizza = 40;
+
 
 
 // possiveis upgrades
@@ -103,7 +106,26 @@ rastro_de_queijo = function()
 	}
 }
 
+slow_area_ativo = false;
+raio_slow = 100;
+forca_slow = 0.5;
+slow_area = function()
+{
+    if (!slow_area_ativo) return;
 
+    var _lista = ds_list_create();
+
+    collision_circle_list(x, y, raio_slow, obj_entidade_inimigo, false, true, _lista, true);
+
+    for (var i = 0; i < ds_list_size(_lista); i++)
+    {
+        var _inimigo = _lista[| i];
+
+        _inimigo.slow = forca_slow;
+    }
+
+    ds_list_destroy(_lista);
+}
 
 
 
@@ -181,6 +203,8 @@ estado_parado = function()
 {
 	if (estado_txt != "parado")
 	{		
+		velh = 0;
+		velv = 0;
 		//aqui dentro as coisas acontecem apenas uma vez quando entra no estado
 		//Mudando a sprite
 		sprites_index = 0;

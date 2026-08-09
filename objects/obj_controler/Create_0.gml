@@ -14,7 +14,10 @@ gui_surface = -1;
 global.forno_xplode_ativo = false;
 global.forno_sniper_ativo = false;
 global.pizza_extra_ativa = false;
-
+global.pizza_de_fogo_ativo = false;
+global.pizza_slow_ativo = false;
+global.pizza_xplode_ativo = false;
+global.pizza_pedaco_ativa = false;
 
 
 
@@ -218,6 +221,8 @@ gamepad_check_any_button = function()
 
 
 global.fornos = [];
+global.queijos = [];
+global.pimenta = [];
 
 //salva o dinheiro q tinha antes
 cash_antigo = 0;

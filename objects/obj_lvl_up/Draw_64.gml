@@ -36,12 +36,20 @@ for (var i = 0; i < array_length(upgrade_escolha); i++)
         if (delay_clike <= 0 && mouse_check_button_pressed(mb_left))
 	    {
 	        carta.ativa();   // Executa aqui
+			carta.nivel++;
 	        saindo = true;
 	    }
     }
 	hover_scale[i] = lerp(hover_scale[i],alvo_escala,0.2);
 	cima_x[i] = lerp(cima_x[i], alvo, 0.2);
     draw_sprite_ext(spr_escolha_botao,carta.frame,_x + cima_x[i] + entrada_x + pos_saida+5,yy,hover_scale[i],1,0,c_white,1);
+	
+	if (carta.nivel == carta.maximo - 1)
+	{
+	    draw_sprite_ext(spr_nivel_max, 0, _x + cima_x[i] + entrada_x + pos_saida + 5, yy, hover_scale[i], 1, 0, c_white, 1);
+	}
+
+	
 		if(hover_scale[i] == 1.05)
 		{
 			var _desc_x = _x - cima_x[i] - entrada_x - pos_saida - sprite_get_width(spr_escolha_botao);

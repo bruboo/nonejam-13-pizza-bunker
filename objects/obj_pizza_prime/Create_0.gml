@@ -20,7 +20,9 @@ veloh_save = 0;
 pode_gerar_extra = true;
 
 //tempo q a pizza dura
-tempo_pizza = 40;
+tempo_pizza = obj_player.tempo_pizza;
+
+
 
 //porradas q a pizza aguenta
 fornos_batidos = 0;
@@ -49,16 +51,7 @@ destroi_pizza = function()
 	}
 }
 
-rastro_de_fogo = function()
-{
-	
-	
-	
-	
-	
-	
-	
-}
+
 
 
 //estado base, como sai da mao do player
@@ -74,19 +67,24 @@ estado_crua = function()
 	}
 	//Animando a sprite
 	ajusta_sprite(sprites_index);
-	
+	pizza_de_fogo();
 	destroi_pizza();
+	pizza_slow();
+	
+	
 	var _inimigo = instance_place(x, y, obj_entidade_inimigo);
 
 	if (_inimigo != noone)
 	{
 		
 		_inimigo.toma_dano(velv,velh,dano_base);
+		pizza_xplode();
+		
 
 	    // destrói apenas se ainda não bateu em nenhum forno
 	    if (fornos_batidos <= 0)
 	    {
-			create_part(5,8,10,x,y,0,0);
+			create_part(5,15,20,x,y,0,0);
 	        instance_destroy();
 	    }
 	}
@@ -116,6 +114,9 @@ estado_pronta = function()
 	//Animando a sprite
 	ajusta_sprite(sprites_index);
 	destroi_pizza();
+	pizza_de_fogo();
+	pizza_slow();
+	
 	image_angle = point_direction(0, 0, velh, velv) + 90;
 	var _inimigo = instance_place(x, y, obj_entidade_inimigo);
 
@@ -123,15 +124,17 @@ estado_pronta = function()
 	{
 		if(!array_contains(lista_inimigos,_inimigo.id))
 		{
-		
+			
 		    // a pizza tocou no inimigo		
 			array_push(lista_inimigos,_inimigo.id)
 			_inimigo.toma_dano(velv,velh,dano_base);
+			pizza_xplode();
 		}
 	}
 	
 			if (fornos_batidos >= limite_de_fornos)
 		    {
+				
 				create_part(5,8,10,x,y,0,0);
 		        instance_destroy();		
 		    }
