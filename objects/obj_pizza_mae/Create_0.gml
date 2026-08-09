@@ -52,23 +52,15 @@ ajusta_sprite = function(_indice_array)
 }
 intervalo_fogo = 4;
 timer_fogo = intervalo_fogo;
-pizza_de_fogo = function()
+pizza_de_fogo = function(_inimigo)
 {
 	if (!global.pizza_de_fogo_ativo) return;
 
-	timer_fogo++;
-
-	if (timer_fogo >= intervalo_fogo)
-	{
-		timer_fogo = 0;
-		var _rastro = instance_create_layer(x,y-6,"Instances",obj_rastro_de_fogo);
-		_rastro.image_xscale = 2;
-		_rastro.image_yscale = 2;
+	_inimigo.queimando = true;
+	_inimigo.tempo_queimando = 120;
+	_inimigo.timer_fogo = 0;
 	
-			if (velh != 0)_rastro.image_angle = velh > 0 ? 0 : 180;
-			else if (velv != 0)_rastro.image_angle = velv > 0 ? 270 : 90;
 	
-	}
 }
 forca_slow = 0.5;
 pizza_slow = function()

@@ -51,7 +51,9 @@ else
 	
 	if(_hover && mouse_check_button_pressed(mb_left))
 	{
-				
+				var _aviso = instance_create_layer(0, 0, "Brilho", obj_texto_slide);
+				_aviso.sprite = spr_vem_wave;
+				_aviso.x = -sprite_get_width(_aviso.sprite);
 				estado = "fechada"
 				obj_wave.voltar_wave();
 				

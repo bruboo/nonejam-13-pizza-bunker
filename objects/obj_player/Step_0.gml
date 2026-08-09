@@ -30,6 +30,11 @@ if (lvl_stack > 0 && !instance_exists(obj_lvl_up))
     lvl_stack--;
 }
 
+if(keyboard_check_pressed(vk_numpad2))
+{
+	instance_create_layer(0, 0, "Brilho", obj_texto_slide);
+}
+
 
 
 //O player é um listener

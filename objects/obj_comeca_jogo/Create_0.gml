@@ -151,6 +151,7 @@ tutorial_mandy = function()
 	{
 		mandy_delay_saida = 100;
 		tutorial_estado = tutorial_mandy_espera_saida;
+		if(!instance_exists(obj_wave)) instance_create_layer(0,0,"Instances",obj_wave);
 	}
 };
 

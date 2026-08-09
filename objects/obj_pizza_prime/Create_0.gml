@@ -67,7 +67,6 @@ estado_crua = function()
 	}
 	//Animando a sprite
 	ajusta_sprite(sprites_index);
-	pizza_de_fogo();
 	destroi_pizza();
 	pizza_slow();
 	
@@ -76,9 +75,10 @@ estado_crua = function()
 
 	if (_inimigo != noone)
 	{
-		
-		_inimigo.toma_dano(velv,velh,dano_base);
+		pizza_de_fogo(_inimigo);
 		pizza_xplode();
+		_inimigo.toma_dano(velv,velh,dano_base);
+		
 		
 
 	    // destrói apenas se ainda não bateu em nenhum forno
@@ -114,7 +114,7 @@ estado_pronta = function()
 	//Animando a sprite
 	ajusta_sprite(sprites_index);
 	destroi_pizza();
-	pizza_de_fogo();
+	
 	pizza_slow();
 	
 	image_angle = point_direction(0, 0, velh, velv) + 90;
@@ -127,8 +127,10 @@ estado_pronta = function()
 			
 		    // a pizza tocou no inimigo		
 			array_push(lista_inimigos,_inimigo.id)
-			_inimigo.toma_dano(velv,velh,dano_base);
 			pizza_xplode();
+			pizza_de_fogo(_inimigo);
+			_inimigo.toma_dano(velv,velh,dano_base);
+			
 		}
 	}
 	

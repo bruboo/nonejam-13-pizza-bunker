@@ -1,4 +1,4 @@
-image_alpha -= 0.4;
+image_alpha -= 0.3;
 
 
 if(image_alpha <= 0) instance_destroy();

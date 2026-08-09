@@ -1,12 +1,14 @@
 
 if(estado == "aberta")
 {
+	sprite_index = spr_loja;
+	
 	if(place_meeting(x,y,obj_player))
 	{
 		global.bloquear_ataque = true;
 		if(!instance_exists(obj_upgrades_loja))
 		{
-			instance_create_layer(mouse_x,mouse_y,layer,obj_upgrades_loja);
+			instance_create_layer(mouse_x,mouse_y,"Instances",obj_upgrades_loja);
 		}
 	
 	}
@@ -29,6 +31,7 @@ if(estado == "aberta")
 }
 if(estado == "fechada")
 {
+	sprite_index = spr_loja_1;
 	if(instance_exists(obj_upgrades_loja))
 	{
 		with(obj_upgrades_loja)

@@ -32,8 +32,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_part_star_1",
-    "path":"sprites/spr_part_star_1/spr_part_star_1.yy",
+    "name":"spr_cash_drop",
+    "path":"sprites/spr_cash_drop/spr_cash_drop.yy",
   },
   "spriteMaskId":null,
   "visible":true,

@@ -22,7 +22,7 @@ obj_camera.alvo = global.player;
 
 visivel = true;
 timer_invencivel = 0;
-toma_dano = false;
+tomando_dano = false;
 
 vida_max = 10
 vida = vida_max;
@@ -33,7 +33,7 @@ xp = 0;
 lvl = 1;
 
 //dinheiro
-cash = 200;
+cash = 2000;
 
 proximo_lvl = 4;
 lvl_stack = 0;
@@ -151,7 +151,7 @@ toma_dano = function(_dano)
 	timer_invencivel = 20;
 	tomando_dano = true;
 
-	if (vida <= 0)
+	if (vida <= 0 && room != rm_tutorial)
 	{
 		estado = estado_morto;
 	}

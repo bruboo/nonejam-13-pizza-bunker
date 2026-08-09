@@ -3,7 +3,7 @@ velh = 0;
 velv = 0;
 //sprite que será desenhada
 sprite = sprite_index;
-
+escala_dano = 1;
 //texto debug
 estado_txt = "";
 
@@ -27,6 +27,54 @@ image_spd = 10/ 60;
 image_numb = sprite_get_number(sprite);
 //não precisa existir
 troquei = false;
+
+dano_fogo = 0;
+queimando = false;
+tempo_queimando = 0;
+intervalo_fogo = 30;
+timer_fogo = 0;
+
+
+
+
+toma_dano_fogo = function()
+{
+	var _dano = max(1, floor(obj_player.dano_bonus / 2));
+	
+	vida -= _dano;
+	dano_flash = 1;
+	var _popup = instance_create_layer(x + random_range(-6, 6), bbox_top - 8 + random_range(-2, 2), "Brilho", obj_popup);
+	_popup.valor = round(_dano);
+
+	image_xscale = 1.8;
+	image_yscale = 1.8;
+
+	if (vida <= 0)
+	{
+		if (room == rm_01)
+		{
+			var _offset_x = random_range(-8, 8);
+		var _offset_y = random_range(-8, 8);
+
+			if (random(1) < 0.5)
+			instance_create_layer(x + _offset_x, y + _offset_y, "chao", obj_experiencia);
+	
+			if (random(1) < 0.5)
+			instance_create_layer(x + random_range(-8, 8), y + random_range(-8, 8), "chao", obj_cash);
+
+			instance_destroy();
+		}
+		else
+		{
+			instance_destroy();
+		}
+	}
+}
+
+
+
+
+
 
 //função para simplificar a troca de sprites
 ajusta_sprite = function(_indice_array)
@@ -56,6 +104,7 @@ slow = 1;
 
 vida = 2;
 dano = 1;
+dano_flash = 0;
 
 
 _obj_colision = [];
@@ -71,22 +120,28 @@ estado			= noone;
 
 toma_dano = function(_velv = 0,_velh = 0,_dano_base = 0)
 {		
-	
+		dano_flash = 1;
 		var _dano_bonus = instance_exists(obj_player) ? obj_player.dano_bonus : 0;
 		vida -= _dano_base + _dano_bonus;
 		var _popup = instance_create_layer(x + random_range(-6,6), bbox_top - 8 + random_range(-2,2), "Brilho", obj_popup);
 		_popup.valor = round(_dano_base + _dano_bonus);
 		create_part(9,10,25,x,y,_velh,_velv);
-		image_xscale = 1.8;
-		image_yscale = 1.8;
+		escala_dano = 1.8;
 	
 		
 		if(vida <= 0)
 		{
 			if(room == rm_01)
 			{
-				instance_create_layer(x,y,layer,obj_experiencia);
-				instance_create_layer(x,y,layer,obj_cash);
+				var _offset_x = random_range(-8, 8);
+		var _offset_y = random_range(-8, 8);
+
+			if (random(1) < 0.5)
+			instance_create_layer(x + _offset_x, y + _offset_y, "chao", obj_experiencia);
+
+			if (random(1) < 0.5)
+			instance_create_layer(x + random_range(-8, 8), y + random_range(-8, 8), "chao", obj_cash);
+
 				instance_destroy();
 			}
 			else
@@ -125,8 +180,15 @@ calcula_movimento = function()
     }
 
     ds_list_destroy(_lista);
-
-    move_and_collide(velh, velv, obj_player);
+	
+	
+	
+	
+	
+    move_and_collide(velh, velv,0);
+	
+	if (velh > 0) image_xscale = 1;
+	if (velh < 0) image_xscale = -1;
 }
 
 
@@ -136,8 +198,7 @@ estado_parado = function()
 	if (estado_txt != "parado")
 	{		
 		//aqui dentro as coisas acontecem apenas uma vez quando entra no estado
-		image_xscale = 1.5;
-		image_yscale = 1.5;
+		
 		//Mudando a sprite
 		sprites_index = 0;
 		estado_txt = "parado";
@@ -164,8 +225,7 @@ estado_segue = function()
 {
 	if (estado_txt != "segue")
 	{		
-		image_xscale = 1.5;
-		image_yscale = 1.5;
+		
 		sprites_index = 0;
 		estado_txt = "segue";
 	}

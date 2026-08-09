@@ -53,7 +53,11 @@ for(var i = 0; i < array_length(eventos); i++)
 		{
 			case "loja":
 				parar_wave();
-				
+				var _aviso = instance_create_layer(0, 0, "Brilho", obj_texto_slide);
+				_aviso.sprite = spr_vai_wave;
+				_aviso.x = -sprite_get_width(_aviso.sprite);
+				instance_destroy(obj_cash);
+				instance_destroy(obj_experiencia);
 				gera_upgrades_loja();
 				with(obj_loja)
 				{

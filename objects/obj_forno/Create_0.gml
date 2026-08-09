@@ -24,7 +24,8 @@ forno_xplode = function()
 	if (!global.forno_xplode_ativo) return;
 	var _rastro = instance_create_layer(x,y-14,"Instances",obj_forno_explode);
 	_rastro.image_alpha = 0;
-	create_part(8,40,60,x,y-14,0,0);	
+	var _boom = instance_create_layer(x,y-40,"Instances",obj_effect_anim);
+	_boom.sprite_index = spr_explode_forno_area;
 }
 forno_sniper = function(_pizza, check_vel, alvo, dir)
 {
@@ -78,6 +79,7 @@ estado_base = function()
 	{
 		if(_pizza.ultimo_forno != id)
 		{
+			_pizza.ultimo_forno = id;
 			create_part(0,30,60,x,y-14,0,0);
 			image_xscale = 1.5;
 			image_yscale = 1.5;

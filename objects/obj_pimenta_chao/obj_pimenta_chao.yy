@@ -9,7 +9,10 @@
     "name":"Fornos",
     "path":"folders/Objetos/Fornos.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_dano",
+    "path":"objects/obj_dano/obj_dano.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

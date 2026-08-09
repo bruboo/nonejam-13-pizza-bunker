@@ -11,15 +11,19 @@ timer_spawn = 0;
 inimigo_normal = obj_inimigo;
 inimigo_1 = obj_inimigo_1;
 inimigo_2 = obj_inimigo_2;
+inimigo_3 = obj_inimigo_3;
+inimigo_0 = obj_inimigo_0;
+
 
 // waves
 waves_jogo = [
 	{
 		tempo: 0,
 		inimigos: [
-			{obj: inimigo_normal, chance: 100}
+			{obj: inimigo_normal, chance: 20},
+			{obj: inimigo_0, chance: 80}
 		],
-		limite: 30,
+		limite: 15,
 		intervalo: 1
 	},
 
@@ -30,7 +34,7 @@ waves_jogo = [
 			{obj: inimigo_normal, chance: 70},
 			{obj: inimigo_1, chance: 30}
 		],
-		limite: 60,
+		limite: 20,
 		intervalo: 0.6
 	},
 
@@ -38,21 +42,24 @@ waves_jogo = [
 		tempo: 120,
 		inimigos: [
 			{obj: inimigo_normal, chance: 50},
-			{obj: inimigo_1, chance: 35},
-			{obj: inimigo_2, chance: 15}
+			{obj: inimigo_1, chance: 25},
+			{obj: inimigo_2, chance: 20},
+			{obj: inimigo_2, chance: 5}
 		],
-		limite: 100,
-		intervalo: 0.3
+		limite: 40,
+		intervalo: 0.5
 	},
 	
 	{
 		tempo: 160,
 		inimigos: [
-			{obj: inimigo_1, chance: 50},
-			{obj: inimigo_2, chance: 50}
+			{obj: inimigo_1, chance: 10},
+			{obj: inimigo_3, chance: 25},
+			{obj: inimigo_2, chance: 60}
+
 		],
-		limite: 100,
-		intervalo: 0.1
+		limite: 50,
+		intervalo: 0.3
 	}
 ];
 
@@ -60,22 +67,30 @@ waves_jogo = [
 // waves tutorial
 waves_tutorial = [
 	{
-		tempo: 8,
+		tempo: 5,
 		inimigos: [
-			{obj: inimigo_normal, chance: 100}
+			{obj: inimigo_0, chance: 100}
 		],
-		limite: 30,
+		limite: 2,
 		intervalo: 1
 	},
-
 	{
 		// é 60 na vdd
-		tempo: 15,
+		tempo: 30,
 		inimigos: [
-			{obj: inimigo_normal, chance: 100}			
+			{obj: inimigo_0, chance: 100}			
 		],
-		limite: 60,
-		intervalo: 0.9
+		limite: 4,
+		intervalo: 1
+	},
+	{
+		// é 60 na vdd
+		tempo: 50,
+		inimigos: [
+			{obj: inimigo_0, chance: 100}			
+		],
+		limite: 6,
+		intervalo: 0.5
 	}
 	
 ];
@@ -156,20 +171,26 @@ spawn_inimigo = function(_obj)
 
 	repeat(30)
 	{
-		_x_spawn = random_range(_margem_mapa, 2845 - _margem_mapa);
-		_y_spawn = random_range(_margem_mapa, 2200 - _margem_mapa);
-
-		// Não pode nascer dentro da câmera
-		if (point_in_rectangle(
-			_x_spawn,
-			_y_spawn,
-			_cam_x - _margem_camera,
-			_cam_y - _margem_camera,
-			_cam_x + _cam_w + _margem_camera,
-			_cam_y + _cam_h + _margem_camera
-		))
+		if (room == rm_tutorial)
 		{
-			continue;
+			_x_spawn = random_range(0, 1000);
+			_y_spawn = random_range(0, 570);
+		}
+		else
+		{
+			_x_spawn = random_range(_margem_mapa, 2845 - _margem_mapa);
+			_y_spawn = random_range(_margem_mapa, 2200 - _margem_mapa);
+
+			// Não pode nascer dentro da câmera
+			if (point_in_rectangle(_x_spawn, _y_spawn, _cam_x - _margem_camera, _cam_y - _margem_camera, _cam_x + _cam_w + _margem_camera, _cam_y + _cam_h + _margem_camera))
+				continue;
+		}
+
+		// Não pode nascer perto do player
+		if (instance_exists(obj_player))
+		{
+			if (point_distance(_x_spawn, _y_spawn, obj_player.x, obj_player.y) < 80)
+				continue;
 		}
 
 		// Não pode nascer dentro de parede
@@ -181,13 +202,15 @@ spawn_inimigo = function(_obj)
 	}
 };
 
+
+
 //upgrades da loja aqui
 upgrades = [
 
 /////////
 		{
 			frame:0,
-			preco:100,
+			preco:50,
 			ativa: function()
 			{
 				array_push(global.pimenta,
@@ -200,7 +223,7 @@ upgrades = [
 /////////
 		{
 			frame:1,
-			preco:100,
+			preco:1000,
 			comprado: false,
 			ativa: function()
 			{
@@ -223,7 +246,7 @@ upgrades = [
 /////////
 		{
 			frame:3,
-			preco:100,
+			preco:800,
 			comprado: false,
 			ativa: function()
 			{
@@ -234,7 +257,7 @@ upgrades = [
 		/////////
 		{
 			frame:4,
-			preco:100,
+			preco:500,
 			comprado: false,
 			ativa: function()
 			{
@@ -244,7 +267,7 @@ upgrades = [
 		/////////
 		{
 			frame:5,
-			preco:100,
+			preco:50,
 			ativa: function()
 			{
 				array_push(global.queijos,
@@ -305,12 +328,7 @@ gera_upgrades_loja = function()
 //aqui determina o tempo q vai ser chamado a porra
 eventos_jogo = [
 	{
-		tempo: 2,
-		acao: "loja",
-		feito: false
-	},
-	{
-		tempo: 90,
+		tempo: 40,
 		acao: "loja",
 		feito: false
 	},
@@ -325,17 +343,47 @@ eventos_jogo = [
 		feito: false
 	},
 	{
-		tempo: 250,
-		acao: "loja",
-		feito: false
-	},
-	{
 		tempo: 300,
 		acao: "loja",
 		feito: false
 	},
 	{
 		tempo: 400,
+		acao: "loja",
+		feito: false
+	},
+	{
+		tempo: 600,
+		acao: "loja",
+		feito: false
+	},
+	{
+		tempo: 800,
+		acao: "loja",
+		feito: false
+	},
+	{
+		tempo: 1000,
+		acao: "loja",
+		feito: false
+	},
+	{
+		tempo: 1300,
+		acao: "loja",
+		feito: false
+	},
+	{
+		tempo: 1500,
+		acao: "loja",
+		feito: false
+	},
+	{
+		tempo: 1700,
+		acao: "loja",
+		feito: false
+	},
+	{
+		tempo: 2000,
 		acao: "boss",
 		feito: false
 	}
@@ -447,7 +495,18 @@ global.player_upgrades = [
 			maximo:1,
 			ativa: function()
 			{
-				obj_player.rastro_de_fogo_ativo = true;	
+				for (var i = 0; i < 3; i++)
+				{
+					var _pizza = instance_create_layer(obj_player.x, obj_player.y, "Instances", obj_pizza_orbita);
+
+					_pizza.indice = i;
+					_pizza.qtd_orbita = 3;
+					_pizza.distancia = 120;
+					_pizza.vel_giro = 3;
+					_pizza.angulo = 0;
+					_pizza.image_xscale = 2;
+					_pizza.image_yscale = 2;
+				}
 			}
 		},
 		/////////		
