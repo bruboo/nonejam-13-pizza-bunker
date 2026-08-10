@@ -33,7 +33,7 @@ xp = 0;
 lvl = 1;
 
 //dinheiro
-cash = 50;
+cash = 200;
 
 proximo_lvl = 4;
 lvl_stack = 0;

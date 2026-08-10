@@ -2,10 +2,10 @@
   "$GMSprite":"v2",
   "%Name":"spr_numeral_cash_loja",
   "bboxMode":0,
-  "bbox_bottom":23,
-  "bbox_left":0,
-  "bbox_right":13,
-  "bbox_top":0,
+  "bbox_bottom":26,
+  "bbox_left":1,
+  "bbox_right":16,
+  "bbox_top":1,
   "collisionKind":1,
   "collisionTolerance":0,
   "ConfigValues":{
@@ -30,7 +30,7 @@
   ],
   "gridX":0,
   "gridY":0,
-  "height":24,
+  "height":29,
   "HTile":false,
   "layers":[
     {"$GMImageLayer":"","%Name":"66270d39-aff6-4ecc-86a6-fca6ac6b9269","blendMode":0,"displayName":"default","isLocked":false,"name":"66270d39-aff6-4ecc-86a6-fca6ac6b9269","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
@@ -127,5 +127,5 @@
   },
   "type":0,
   "VTile":false,
-  "width":14,
+  "width":18,
 }

@@ -7,5 +7,5 @@ sprites = [
 			
 		  ];
 		  
-vida = 20;
+vida = 80;
 vel = 1.5;

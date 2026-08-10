@@ -109,7 +109,7 @@ waves_jogo = [
 			{obj: inimigo_2, chance: 30}
 		],
 		limite: 40,
-		intervalo: 0.3
+		intervalo: 0.2
 	},
 	{
 		tempo: 600,
@@ -120,7 +120,7 @@ waves_jogo = [
 			{obj: inimigo_2, chance: 30}
 		],
 		limite: 50,
-		intervalo: 0.3
+		intervalo: 0.1
 	},
 	{
 		tempo: 780,
@@ -131,7 +131,7 @@ waves_jogo = [
 			{obj: inimigo_4, chance: 30}
 		],
 		limite: 40,
-		intervalo: 0.3
+		intervalo: 0.1
 	},
 	{
 		tempo: 900,
@@ -142,7 +142,7 @@ waves_jogo = [
 			{obj: inimigo_2, chance: 1}
 		],
 		limite: 40,
-		intervalo: 0.3
+		intervalo: 0.2
 	}
 	
 ];
@@ -422,6 +422,11 @@ eventos_jogo = [
 		feito: false
 	},
 	{
+		tempo: 180,
+		acao: "pinto grande",
+		feito: false
+	},
+	{
 		tempo: 200,
 		acao: "loja",
 		feito: false
@@ -429,6 +434,11 @@ eventos_jogo = [
 	{
 		tempo: 300,
 		acao: "loja",
+		feito: false
+	},
+	{
+		tempo: 360,
+		acao: "corvo grande",
 		feito: false
 	},
 	{
@@ -442,30 +452,26 @@ eventos_jogo = [
 		feito: false
 	},
 	{
-		tempo: 800,
+		tempo: 610,
+		acao: "bola oito grande",
+		feito: false
+	},
+	{
+		tempo: 700,
 		acao: "loja",
 		feito: false
 	},
 	{
-		tempo: 900,
+		tempo: 800,
 		acao: "boss",
 		feito: false
 	},
 	{
-		tempo: 180,
-		acao: "pinto grande",
-		feito: false
-	},
-	{
-		tempo: 360,
-		acao: "corvo grande",
-		feito: false
-	},
-	{
-		tempo: 600,
-		acao: "bola oito grande",
+		tempo: 900,
+		acao: "fim",
 		feito: false
 	}
+	
 ];
 
 //aqui determina o tempo q vai ser chamado a porra

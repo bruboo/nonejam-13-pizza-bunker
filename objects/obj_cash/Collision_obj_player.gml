@@ -1,6 +1,6 @@
 with(obj_player)
 {
-	cash += 15;
+	cash += 4;
 	image_xscale = 1.3;
 	image_yscale = 1.3;
 }

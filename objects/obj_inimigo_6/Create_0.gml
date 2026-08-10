@@ -1,5 +1,7 @@
 // Inherit the parent event
 event_inherited();
+image_xscale = 1.5;
+image_yscale = 1.5;
 
 sprites = [
 			//sprites parado
@@ -7,5 +9,5 @@ sprites = [
 			
 		  ];
 		  
-vida = 50;
+vida = 90;
 vel = 0.8;

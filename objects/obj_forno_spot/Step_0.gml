@@ -10,7 +10,7 @@ if (!_tocando && mouse_check_button_pressed(mb_left))
 	global.bloquear_ataque = false;
     confirmado = true;
 
-    instance_create_layer(x, y, "Instance", obj_forno);
+    instance_create_layer(x, y, "Instances", obj_forno);
     instance_destroy();
 }
 
