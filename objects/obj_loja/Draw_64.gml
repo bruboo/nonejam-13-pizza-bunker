@@ -1,4 +1,6 @@
-if(estado == "aberta")
+
+
+if(estado == "aberta" )
 {
 	var _player = global.player;
 
@@ -27,14 +29,14 @@ if(estado == "aberta")
 
 	
 	if(!botao_entrou)
-{
-	botao_x = approach(botao_x,botao_x_final,15);
-
-	if(botao_x == botao_x_final)
 	{
-		botao_entrou = true;
+		botao_x = approach(botao_x,botao_x_final,15);
+
+		if(botao_x == botao_x_final)
+		{
+			botao_entrou = true;
+		}
 	}
-}
 else
 {
 	var _mx = device_mouse_x_to_gui(0);
@@ -55,6 +57,7 @@ else
 				_aviso.sprite = spr_vem_wave;
 				_aviso.x = -sprite_get_width(_aviso.sprite);
 				estado = "fechada"
+				scpt_audio_play_sound(snd_troca);
 				obj_wave.voltar_wave();
 				
 	}

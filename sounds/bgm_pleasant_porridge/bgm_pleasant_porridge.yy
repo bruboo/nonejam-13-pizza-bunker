@@ -22,5 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":44100,
   "soundFile":"bgm_pleasant_porridge.mp3",
-  "volume":0.24,
+  "volume":0.53,
 }

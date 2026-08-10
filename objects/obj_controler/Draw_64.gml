@@ -11,6 +11,9 @@ if (!surface_exists(gui_surface))
     gui_surface = surface_create(1024, 576);
 }
 
+
+
+
 surface_set_target(gui_surface);
 draw_clear_alpha(c_black, 0);
 

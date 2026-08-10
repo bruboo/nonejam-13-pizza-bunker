@@ -5,4 +5,5 @@ with(obj_player)
 	image_yscale = 1.3;
 }
 create_part(3,10,15,x,y-16,velh,velv);
+scpt_audio_play_sound(snd_estrela);
 instance_destroy();

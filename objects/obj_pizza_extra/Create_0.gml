@@ -83,6 +83,7 @@ estado_pronta = function()
 			pizza_xplode();
 			pizza_de_fogo(_inimigo);
 			_inimigo.toma_dano(velv,velh,dano_base);
+			scpt_audio_play_sound(snd_dano)
 			
 		}
 	}

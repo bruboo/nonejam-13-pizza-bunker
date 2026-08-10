@@ -28,8 +28,8 @@ if(room == rm_01)
 draw_set_color(c_white);
 
 
-draw_text(100, 130, "FPS: " + string(fps));
-draw_text(100, 150, "Inimigos: " + string(instance_number(obj_entidade_inimigo)));
-draw_text(100, 170, "Pizzas: " + string(instance_number(obj_pizza_mae)));
-draw_text(100, 190, "Particulas: " + string(instance_number(obj_part_star)));
-draw_text(100, 110, "Particulassss: " + string(instance_number(obj_part_alpha)));
+//draw_text(100, 130, "FPS: " + string(fps));
+//draw_text(100, 150, "Inimigos: " + string(instance_number(obj_entidade_inimigo)));
+//draw_text(100, 170, "Pizzas: " + string(instance_number(obj_pizza_mae)));
+//draw_text(100, 190, "Particulas: " + string(instance_number(obj_part_star)));
+//draw_text(100, 110, "Particulassss: " + string(instance_number(obj_part_alpha)));

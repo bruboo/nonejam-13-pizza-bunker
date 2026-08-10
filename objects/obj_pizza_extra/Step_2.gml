@@ -30,6 +30,7 @@ repeat(passos)
     {
 		ultimo_forno = noone;
 		create_part(5,10,10,x,y,velh,velv);
+		scpt_audio_play_sound(snd_dano)
 		pizza_pedacos();
 		lista_inimigos = [];
         velh = -velh;
@@ -44,6 +45,7 @@ repeat(passos)
     {
 		ultimo_forno = noone;
 		create_part(5,10,10,x,y,velh,velv);
+		scpt_audio_play_sound(snd_dano)
 		pizza_pedacos();
 		lista_inimigos = [];
         velv = -velv;

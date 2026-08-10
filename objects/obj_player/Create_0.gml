@@ -27,13 +27,13 @@ tomando_dano = false;
 vida_max = 10
 vida = vida_max;
 
-
+morto = false;
 //experiencia do player
 xp = 0;
 lvl = 1;
 
 //dinheiro
-cash = 2000;
+cash = 50;
 
 proximo_lvl = 4;
 lvl_stack = 0;
@@ -154,6 +154,7 @@ toma_dano = function(_dano)
 	if (vida <= 0 && room != rm_tutorial)
 	{
 		estado = estado_morto;
+		morto = false;
 	}
 
 	return true;
@@ -278,6 +279,10 @@ estado_morto = function()
 {
 	if (estado_txt != "morto")
 	{		
+		scpt_audio_play_sound(snd_morte);
+		morto = false;
+		velh = 0;
+		velv = 0;
 		//aqui dentro as coisas acontecem apenas uma vez quando entra no estado
 		//Mudando a sprite
 		sprites_index = 2;

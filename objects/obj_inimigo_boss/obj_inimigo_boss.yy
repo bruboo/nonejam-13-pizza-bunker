@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_inimigo_boss",
-    "path":"sprites/spr_inimigo_boss/spr_inimigo_boss.yy",
+    "name":"spr_boss",
+    "path":"sprites/spr_boss/spr_boss.yy",
   },
   "spriteMaskId":null,
   "visible":true,

@@ -77,6 +77,7 @@ estado_crua = function()
 	{
 		pizza_de_fogo(_inimigo);
 		pizza_xplode();
+		scpt_audio_play_sound(snd_dano)
 		_inimigo.toma_dano(velv,velh,dano_base);
 		
 		
@@ -129,6 +130,7 @@ estado_pronta = function()
 			array_push(lista_inimigos,_inimigo.id)
 			pizza_xplode();
 			pizza_de_fogo(_inimigo);
+			scpt_audio_play_sound(snd_dano)
 			_inimigo.toma_dano(velv,velh,dano_base);
 			
 		}

@@ -1,5 +1,5 @@
 
-
+obj_player.vida = obj_player.vida_max;
 
 
 upgrade_escolha = [];

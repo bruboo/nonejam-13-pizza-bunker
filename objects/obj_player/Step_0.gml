@@ -10,10 +10,7 @@ if(global.parar)
 estado();
 
 
-if(instance_exists(obj_lvl_up))
-{
-	vida = vida_max;
-}
+
 
 
 

@@ -81,6 +81,7 @@ estado_base = function()
 		{
 			_pizza.ultimo_forno = id;
 			create_part(0,30,60,x,y-14,0,0);
+			scpt_audio_play_sound(snd_forno);
 			image_xscale = 1.5;
 			image_yscale = 1.5;
 			forno_xplode();

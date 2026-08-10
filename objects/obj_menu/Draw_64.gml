@@ -9,6 +9,7 @@ draw_set_alpha(1);
 draw_set_color(-1);
 
 draw_sprite_ext(spr_wall,0,0,0,0.5,0.5,1,c_white,1);
+draw_sprite_ext(spr_pizza_logo,0,600,20,0.2,0.2,1,c_white,1);
 
 
 var _x_text    =  display_get_gui_width()/2;

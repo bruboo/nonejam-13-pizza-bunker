@@ -1,7 +1,7 @@
 //Info for the sond we are currently playing / trying to play
 song_instance	  = noone;
 song_asset		  = noone;
-target_song_asset = noone;
+target_song_asset = snd_musica;
 endFadeOutTime    = 0;//how many frames to fade out the song currently playing
 startFadeInTime   = 0;//how many frames to fade in the new song
 fadeInInstVol     = 1;//the volume of song_instance

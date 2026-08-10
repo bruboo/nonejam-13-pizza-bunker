@@ -13,54 +13,138 @@ inimigo_1 = obj_inimigo_1;
 inimigo_2 = obj_inimigo_2;
 inimigo_3 = obj_inimigo_3;
 inimigo_0 = obj_inimigo_0;
-
+inimigo_5 = obj_inimigo_5;
+inimigo_4 = obj_inimigo_4;
+inimigo_6 = obj_inimigo_6
 
 // waves
 waves_jogo = [
 	{
 		tempo: 0,
 		inimigos: [
+			{obj: inimigo_0, chance: 80},
 			{obj: inimigo_normal, chance: 20},
-			{obj: inimigo_0, chance: 80}
+			{obj: inimigo_1, chance: 0},
+			{obj: inimigo_2, chance: 0}
 		],
-		limite: 15,
+		limite: 20,
 		intervalo: 1
 	},
 
 	{
 		// é 60 na vdd
-		tempo: 80,
+		tempo: 40,
 		inimigos: [
-			{obj: inimigo_normal, chance: 70},
-			{obj: inimigo_1, chance: 30}
+			{obj: inimigo_0, chance: 60},
+			{obj: inimigo_normal, chance: 30},
+			{obj: inimigo_1, chance: 10},
+			{obj: inimigo_2, chance: 0}
 		],
 		limite: 20,
-		intervalo: 0.6
+		intervalo: 1
 	},
-
 	{
+		tempo: 80,
+		inimigos: [
+			{obj: inimigo_0, chance: 40},
+			{obj: inimigo_normal, chance: 30},
+			{obj: inimigo_1, chance: 30},
+			{obj: inimigo_2, chance: 30}
+		],
+		limite: 25,
+		intervalo: 1
+	},
+	{
+		// é 60 na vdd
 		tempo: 120,
 		inimigos: [
-			{obj: inimigo_normal, chance: 50},
-			{obj: inimigo_1, chance: 25},
-			{obj: inimigo_2, chance: 20},
-			{obj: inimigo_2, chance: 5}
+			{obj: inimigo_0, chance: 10},
+			{obj: inimigo_normal, chance: 45},
+			{obj: inimigo_1, chance: 45},
+			{obj: inimigo_2, chance: 0}
 		],
-		limite: 40,
+		limite: 25,
+		intervalo: 1
+	},
+	{
+		tempo: 180,
+		inimigos: [
+			{obj: inimigo_0, chance: 0},
+			{obj: inimigo_normal, chance: 30},
+			{obj: inimigo_1, chance: 60},
+			{obj: inimigo_2, chance: 10}
+		],
+		limite: 30,
 		intervalo: 0.5
 	},
 	
 	{
-		tempo: 160,
+		tempo: 240,
 		inimigos: [
-			{obj: inimigo_1, chance: 10},
-			{obj: inimigo_3, chance: 25},
-			{obj: inimigo_2, chance: 60}
-
+			{obj: inimigo_0, chance: 20},
+			{obj: inimigo_normal, chance: 30},
+			{obj: inimigo_1, chance: 40},
+			{obj: inimigo_2, chance: 10}
 		],
 		limite: 50,
 		intervalo: 0.3
+	},
+	{
+		tempo: 360,
+		inimigos: [
+			{obj: inimigo_0, chance: 0},
+			{obj: inimigo_5, chance: 10},
+			{obj: inimigo_1, chance: 60},
+			{obj: inimigo_2, chance: 30}
+		],
+		limite: 40,
+		intervalo: 0.3
+	},
+	{
+		tempo: 480,
+		inimigos: [
+			{obj: inimigo_0, chance: 0},
+			{obj: inimigo_5, chance: 20},
+			{obj: inimigo_1, chance: 50},
+			{obj: inimigo_2, chance: 30}
+		],
+		limite: 40,
+		intervalo: 0.3
+	},
+	{
+		tempo: 600,
+		inimigos: [
+			{obj: inimigo_0, chance: 0},
+			{obj: inimigo_6, chance: 20},
+			{obj: inimigo_1, chance: 50},
+			{obj: inimigo_2, chance: 30}
+		],
+		limite: 50,
+		intervalo: 0.3
+	},
+	{
+		tempo: 780,
+		inimigos: [
+			{obj: inimigo_normal, chance: 0},
+			{obj: inimigo_6, chance: 50},
+			{obj: inimigo_3, chance: 20},
+			{obj: inimigo_4, chance: 30}
+		],
+		limite: 40,
+		intervalo: 0.3
+	},
+	{
+		tempo: 900,
+		inimigos: [
+			{obj: inimigo_normal, chance: 1},
+			{obj: inimigo_5, chance: 97},
+			{obj: inimigo_1, chance: 1},
+			{obj: inimigo_2, chance: 1}
+		],
+		limite: 40,
+		intervalo: 0.3
 	}
+	
 ];
 
 
@@ -233,7 +317,7 @@ upgrades = [
 /////////
 		{
 			frame:2,
-			preco:100,
+			preco:50,
 			ativa: function()
 			{
 				array_push(global.fornos,
@@ -328,7 +412,7 @@ gera_upgrades_loja = function()
 //aqui determina o tempo q vai ser chamado a porra
 eventos_jogo = [
 	{
-		tempo: 40,
+		tempo: 60,
 		acao: "loja",
 		feito: false
 	},
@@ -363,28 +447,23 @@ eventos_jogo = [
 		feito: false
 	},
 	{
-		tempo: 1000,
-		acao: "loja",
-		feito: false
-	},
-	{
-		tempo: 1300,
-		acao: "loja",
-		feito: false
-	},
-	{
-		tempo: 1500,
-		acao: "loja",
-		feito: false
-	},
-	{
-		tempo: 1700,
-		acao: "loja",
-		feito: false
-	},
-	{
-		tempo: 2000,
+		tempo: 900,
 		acao: "boss",
+		feito: false
+	},
+	{
+		tempo: 180,
+		acao: "pinto grande",
+		feito: false
+	},
+	{
+		tempo: 360,
+		acao: "corvo grande",
+		feito: false
+	},
+	{
+		tempo: 600,
+		acao: "bola oito grande",
 		feito: false
 	}
 ];
@@ -481,7 +560,7 @@ global.player_upgrades = [
 			frame:4,
 			descricao:4,
 			nivel:0,
-			maximo:3,
+			maximo:5,
 			ativa: function()
 			{
 				obj_player.res_pizza += 1;	
@@ -541,7 +620,8 @@ global.player_upgrades = [
 			ativa: function()
 			{
 				obj_player.slow_area_ativo = true;
-				instance_create_layer(obj_player.x,obj_player.y,"chao",obj_slow_area_player);
+				var _area = instance_create_layer(obj_player.x,obj_player.y,"chao",obj_slow_area_player);
+				_area.image_alpha = 0.3;
 			}
 		},
 		/////////		

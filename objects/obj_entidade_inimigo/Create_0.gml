@@ -42,6 +42,7 @@ toma_dano_fogo = function()
 	var _dano = max(1, floor(obj_player.dano_bonus / 2));
 	
 	vida -= _dano;
+	scpt_audio_play_sound(snd_hit);
 	dano_flash = 1;
 	var _popup = instance_create_layer(x + random_range(-6, 6), bbox_top - 8 + random_range(-2, 2), "Brilho", obj_popup);
 	_popup.valor = round(_dano);
@@ -61,11 +62,12 @@ toma_dano_fogo = function()
 	
 			if (random(1) < 0.5)
 			instance_create_layer(x + random_range(-8, 8), y + random_range(-8, 8), "chao", obj_cash);
-
+			scpt_audio_play_sound(snd_inimigo);
 			instance_destroy();
 		}
 		else
 		{
+			scpt_audio_play_sound(snd_inimigo);
 			instance_destroy();
 		}
 	}
@@ -123,6 +125,7 @@ toma_dano = function(_velv = 0,_velh = 0,_dano_base = 0)
 		dano_flash = 1;
 		var _dano_bonus = instance_exists(obj_player) ? obj_player.dano_bonus : 0;
 		vida -= _dano_base + _dano_bonus;
+		scpt_audio_play_sound(snd_hit);
 		var _popup = instance_create_layer(x + random_range(-6,6), bbox_top - 8 + random_range(-2,2), "Brilho", obj_popup);
 		_popup.valor = round(_dano_base + _dano_bonus);
 		create_part(9,10,25,x,y,_velh,_velv);
@@ -141,11 +144,12 @@ toma_dano = function(_velv = 0,_velh = 0,_dano_base = 0)
 
 			if (random(1) < 0.5)
 			instance_create_layer(x + random_range(-8, 8), y + random_range(-8, 8), "chao", obj_cash);
-
+				scpt_audio_play_sound(snd_inimigo);
 				instance_destroy();
 			}
 			else
 			{
+				scpt_audio_play_sound(snd_inimigo);
 				instance_destroy();
 			}
 		}

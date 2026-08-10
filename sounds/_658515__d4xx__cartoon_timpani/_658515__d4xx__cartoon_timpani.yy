@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"_658515__d4xx__cartoon_timpani",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":1.9075284,
+  "exportDir":"",
+  "name":"_658515__d4xx__cartoon_timpani",
+  "parent":{
+    "name":"BGM",
+    "path":"folders/Sons/BGM.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"_658515__d4xx__cartoon_timpani.wav",
+  "volume":1.0,
+}

@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"_695547__shaino123__cartoon_blink_xylophone",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":1,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":1.0,
+  "exportDir":"",
+  "name":"_695547__shaino123__cartoon_blink_xylophone",
+  "parent":{
+    "name":"BGM",
+    "path":"folders/Sons/BGM.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"_695547__shaino123__cartoon_blink_xylophone.wav",
+  "volume":1.0,
+}

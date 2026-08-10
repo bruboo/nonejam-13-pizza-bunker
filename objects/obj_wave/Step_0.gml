@@ -1,7 +1,12 @@
-if (!global.parar && !instance_exists(obj_lvl_up) && !wave_parada)
+
+
+
+
+if (!global.parar && !instance_exists(obj_lvl_up) && !wave_parada && !obj_player.morto)
 {
-    tempo_ms += delta_time / 1000000;
+	tempo_ms += delta_time / 1000000;
 }
+
 
 var _tempo = floor(tempo_ms);
 
@@ -56,6 +61,7 @@ for(var i = 0; i < array_length(eventos); i++)
 				var _aviso = instance_create_layer(0, 0, "Brilho", obj_texto_slide);
 				_aviso.sprite = spr_vai_wave;
 				_aviso.x = -sprite_get_width(_aviso.sprite);
+				scpt_audio_play_sound(snd_troca);
 				instance_destroy(obj_cash);
 				instance_destroy(obj_experiencia);
 				gera_upgrades_loja();
@@ -77,6 +83,22 @@ for(var i = 0; i < array_length(eventos); i++)
 			case "boss":
 				//parar_wave();
 				instance_create_layer(1410,2082,"Instances",obj_inimigo_boss);
+			break;
+			case "pinto grande":
+				//parar_wave();
+				instance_create_layer(1410,2082,"Instances",obj_inimigo_5);
+			break;
+			case "corvo grande":
+				//parar_wave();
+				instance_create_layer(1410,2082,"Instances",obj_inimigo_6);
+			break;
+			case "bola oito grande":
+				//parar_wave();
+				instance_create_layer(1410,2082,"Instances",obj_inimigo_3);
+			break;
+			case "fim":
+				parar_wave();
+				scpt_transition_start(rm_final,0,0,seq_FadeOut,seq_FadeIn);
 			break;
 		}
 	}
